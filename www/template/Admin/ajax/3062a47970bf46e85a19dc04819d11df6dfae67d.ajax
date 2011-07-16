@@ -1,0 +1,17 @@
+
+<table class="admin_table">
+<tr>
+<th>ФИО</th>
+<th>Телефон</th>
+<th>email</th>
+<th colspan="2">Функции</th>
+</tr>
+{{foreach item=LeaderItem from=$Data.ReviewList}}
+<tr>
+	<td>{{$LeaderItem.FIO}}</td>
+	<td>{{$LeaderItem.Fone}}</td>
+        <td>{{$LeaderItem.Email}}</td>
+	<td align="center" width="30"><input type="image" name="handlerBtnEdit:{{$LeaderItem.ReviewId}}" id="btnEdit" src="{{$Address}}img/op_edit.gif" alt="Просмотреть" title="Просмотреть" height="16" width="16" onclick="editReview('{{$LeaderItem.ReviewId}}'); return false;" /></td>
+	<td align="center" width="30"><input type="image" name="handlerBtnDel:{{$LeaderItem.ReviewId}}" src="/img/admin/close_16.png" alt="Удаление заказа" height="16" width="16" onclick="return confirm('Удалить заказ?');" /></td></tr>
+{{/foreach}}
+</table>

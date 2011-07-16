@@ -1,0 +1,41 @@
+/*
+    Document   : news
+    Created on : 30.04.2010, 18:01:00
+    Author     : Anakhorein
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+h3.news_title a {
+	color: #98665e;
+	text-decoration: none;
+	font-weight: normal;
+	font-style: italic;
+}
+
+h3.news_title {
+	font-weight: normal;
+}
+
+h3.news_title a:hover {
+	text-decoration: underline;
+}
+
+.news_preview_text {
+	vertical-align: top;
+}
+
+.news_preview_text p {
+	margin: 0px 30px 10px 20px;
+}
+
+.news_preview_image {
+	vertical-align: top;
+}
+
+

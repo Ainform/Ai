@@ -1,0 +1,14 @@
+
+<table class="admin_table" border="1">
+<tr><th width="200">Фотография</th><th colspan="2">&nbsp;</th><th width="100%">Название</th></tr>
+{{foreach item=Good from=$Data.Goods}}
+	<tr>
+		<td width="200">{{if isset($Good.Image) && $Good.Image != ""}}<a href="{{$Good.Image}}" target="_blank"><img src="{{$Good.Image}}&width=200&height=200&crop=1"  alt="{{$Good.Title}}" title="{{$Good.Title}}" width="200" /></a>{{/if}}</td>
+		<td align="center" width="30"><input type="image" name="handlerBtnEdit:{{$Good.GoodId}}" id="btnEdit" src="{{$Address}}img/op_edit.gif" alt="Редактировать раздел" title="Редактировать раздел" height="16" width="16" onclick="editgood('{{$Good.GoodId}}'); return false;" /></td>
+		<td align="center" width="30"><input type="image" name="handlerBtnGoodDel:{{$Good.GoodId}}" src="/img/admin/close_16.png" alt="Удалить раздел" height="16" width="16" onclick="return confirm('Удалить рфздел?');" /></td>
+		<td>{{$Good.Title}}</td>
+	</tr>
+{{foreachelse}}
+	<tr><td align="center" colspan="6">Изображений в данном разделе нет</td></tr>
+{{/foreach}}
+</table>

@@ -1,0 +1,146 @@
+<?php /* Smarty version 2.6.12, created on 2010-05-07 16:13:35
+         compiled from index-inside.tpl */ ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title><?php echo $this->_tpl_vars['Title']; ?>
+</title>
+        <?php echo $this->_tpl_vars['MetaTags']; ?>
+
+        <?php $_from = $this->_tpl_vars['CSSFiles']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['CSSFile']):
+?>
+        <link href="<?php echo $this->_tpl_vars['CSSFile']; ?>
+" type="text/css" rel="stylesheet" />
+        <?php endforeach; endif; unset($_from); ?>
+        <link href="/css/style_inside.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" type="text/css" href="/css/shadowbox.css">
+        <script type="text/javascript" src="<?php echo $this->_tpl_vars['Address']; ?>
+/js/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript" src="<?php echo $this->_tpl_vars['Address']; ?>
+/js/buket.js"></script>
+        <script type="text/javascript" src="<?php echo $this->_tpl_vars['Address']; ?>
+/js/shadowbox.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="header">
+                <div id="top_cart_outside">
+                    <div id="top_cart">
+                        <p class="top_cart_link"><a href="/cart/">Ваша корзина</a></p>
+                        <p class="top_cart_count">В корзине <?php echo $this->_tpl_vars['Cart_count']; ?>
+</p>
+                    </div>
+                </div>
+                <div id="menu_top_slider_outside">
+                    <div id="menu_top_slider">
+                        <div id="menu_slider_1" class="menu_slider">
+                            <?php $_from = $this->_tpl_vars['MenuSubItems1']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['menuitems'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['menuitems']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['MenuItem']):
+        $this->_foreach['menuitems']['iteration']++;
+?>
+                            <a href="/<?php echo $this->_tpl_vars['MenuItem']['parent_alias']; ?>
+/<?php echo $this->_tpl_vars['MenuItem']['Alias']; ?>
+/" class="menu_sub_item"><?php echo $this->_tpl_vars['MenuItem']['Name']; ?>
+</a>
+                            <?php endforeach; endif; unset($_from); ?>
+                        </div>
+                        <div id="menu_slider_2" class="menu_slider">
+                            <?php $_from = $this->_tpl_vars['MenuSubItems2']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['menuitems'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['menuitems']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['MenuItem']):
+        $this->_foreach['menuitems']['iteration']++;
+?>
+                            <a href="/<?php echo $this->_tpl_vars['MenuItem']['parent_alias']; ?>
+/<?php echo $this->_tpl_vars['MenuItem']['Alias']; ?>
+/" class="menu_sub_item"><?php echo $this->_tpl_vars['MenuItem']['Name']; ?>
+</a>
+                            <?php endforeach; endif; unset($_from); ?>
+                        </div>
+                        <div id="menu_slider_3" class="menu_slider">
+                            <?php $_from = $this->_tpl_vars['MenuSubItems3']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['menuitems'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['menuitems']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['MenuItem']):
+        $this->_foreach['menuitems']['iteration']++;
+?>
+                            <a href="/<?php echo $this->_tpl_vars['MenuItem']['parent_alias']; ?>
+/<?php echo $this->_tpl_vars['MenuItem']['Alias']; ?>
+/" class="menu_sub_item"><?php echo $this->_tpl_vars['MenuItem']['Name']; ?>
+</a>
+                            <?php endforeach; endif; unset($_from); ?>
+                        </div>
+                        <div id="menu_slider_4" class="menu_slider">
+                            <?php $_from = $this->_tpl_vars['MenuSubItems4']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['menuitems'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['menuitems']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['MenuItem']):
+        $this->_foreach['menuitems']['iteration']++;
+?>
+                            <a href="/<?php echo $this->_tpl_vars['MenuItem']['parent_alias']; ?>
+/<?php echo $this->_tpl_vars['MenuItem']['Alias']; ?>
+/" class="menu_sub_item"><?php echo $this->_tpl_vars['MenuItem']['Name']; ?>
+</a>
+                            <?php endforeach; endif; unset($_from); ?>
+                        </div>
+                    </div>
+                </div>
+                <div id="menu_top_outside">
+                    <div id="menu_top">
+                        <?php $_from = $this->_tpl_vars['MenuItems']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }$this->_foreach['menuitems'] = array('total' => count($_from), 'iteration' => 0);
+if ($this->_foreach['menuitems']['total'] > 0):
+    foreach ($_from as $this->_tpl_vars['MenuItem']):
+        $this->_foreach['menuitems']['iteration']++;
+?>
+                        <span id="menu_<?php echo ($this->_foreach['menuitems']['iteration']-1)+1; ?>
+_link" class="menu_link"><?php echo $this->_tpl_vars['MenuItem']['Name']; ?>
+</span>
+                        <?php endforeach; endif; unset($_from); ?>
+                    </div>
+            </div>
+                </div>
+            <div id="content">
+                <div id="menu_left_inside">
+                    <?php if (isset ( $this->_tpl_vars['ParentTitle'] )): ?>
+                    <h1><?php echo $this->_tpl_vars['ParentTitle']; ?>
+</h1>
+                    <?php endif; ?>
+                    <?php $_from = $this->_tpl_vars['MenuLeftItems1']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }if (count($_from)):
+    foreach ($_from as $this->_tpl_vars['MenuLeftItem']):
+?>
+                    <?php if (isset ( $this->_tpl_vars['MenuLeftItem']['Selected'] ) && $this->_tpl_vars['MenuLeftItem']['Selected'] == true): ?>
+                    <a href="/<?php echo $this->_tpl_vars['MenuLeftItem']['Url']; ?>
+" class="menu_left_link_selected"><?php echo $this->_tpl_vars['MenuLeftItem']['Name']; ?>
+</a>
+                    <?php else: ?>
+                    <a href="/<?php echo $this->_tpl_vars['MenuLeftItem']['Url']; ?>
+" class="menu_left_link"><?php echo $this->_tpl_vars['MenuLeftItem']['Name']; ?>
+</a>
+                    <?php endif; ?>
+                    <?php endforeach; endif; unset($_from); ?>
+                </div>
+                <div id="inside_content">
+                    <?php if (count ( $this->_tpl_vars['Modules'] ) != 0): ?>
+                    <?php $_smarty_tpl_vars = $this->_tpl_vars;
+$this->_smarty_include(array('smarty_include_tpl_file' => "../modules.tpl", 'smarty_include_vars' => array()));
+$this->_tpl_vars = $_smarty_tpl_vars;
+unset($_smarty_tpl_vars);
+ ?>
+                    <?php else: ?>
+                    <h2>Раздел в разработке</h2>
+                    <?php endif; ?>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+            <div id="clear"></div>
+            <div id="rasporka"></div>
+        </div>
+        <div id="footer">
+        </div>
+        <script type="text/javascript">
+            Shadowbox.init({
+                overlayColor:"#552e1c"
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+AddCharset UTF-8 .php
+AddDefaultCharset UTF-8
+DirectoryIndex index.php
+
+Options -Indexes
+
+RewriteEngine on
+
+RewriteRule ^(config|backup)(.*)$ - [F] [NC]
+
+#RewriteRule ^(upload)(.*)$ - [F] [NC]
+
+<FilesMatch "\.(inc|tpl|h|ihtml|sql|ini|conf|class|class.php|bin|spd|theme|module|exe|ajax|upl)$">
+	Deny from all
+</FilesMatch>
+
+<Files ~ "^\.ht">
+	 Order allow,deny
+	 Deny from all
+	 Satisfy All
+</Files>
+
+# PHP 5, Apache 1 and 2.
+<IfModule mod_php5.c>
+  php_value magic_quotes_gpc                0
+  php_value register_globals                0
+  php_value session.auto_start              0
+</IfModule>
+
+php_flag    display_errors          on
+php_flag    display_startup_errors  on
+
+#php_value error_reporting 7
+php_flag allow_call_time_reference on
+
+php_value memory_limit 128M
+
+#обрабатываем картинки прозрачно для пользователя
+RewriteRule (.*?\.(jpg|JPG|jpeg|JPEG))(.*?)$ Image.php?url=$1&%{QUERY_STRING}
+RewriteRule (.*?\.(png|PNG))(.*?)$ Image.php?url=$1&%{QUERY_STRING}
+RewriteRule (.*?\.gif)(.*?)$ Image.php?url=$1&%{QUERY_STRING}
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^admin/(.*)$ /admin/index.php?%{QUERY_STRING} [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)/en/(.*)$ index.php?langId=2&%{QUERY_STRING}
+RewriteRule ^(.*)$ index.php?%{QUERY_STRING} [L,QSA]

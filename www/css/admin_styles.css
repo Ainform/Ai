@@ -1,0 +1,411 @@
+@import url("admin/stylesheet.css");
+
+.foo {font-size: 1em; color: #444;font-family: 'PTSansCaptionRegular' }
+
+img { border-width: 0; }
+
+html {
+  height:100%;
+}
+ body {
+  margin:0;
+  padding:0;
+  height:auto !important;
+  height:100%;
+  min-height:100%;
+}
+body
+{
+	padding: 0px;
+	font-size: 1em;
+	background: #FFFFFF;
+	margin: 0px;
+	color: #000;
+	font-family:"Trebuchet MS",PTSansCaptionRegular, arial;
+        background-attachment: fixed;
+        background-image: url(/img/admin/fabric_1.png);
+
+}
+
+.login_body
+{
+    background:url(/img/admin/ai_logo.png) right bottom no-repeat;
+}
+
+H4
+{
+  margin-top:0;
+  font-size: 1.3em;
+	color: #666;
+}
+H2
+{
+  margin-top:0;
+  font-size: 1.3em;
+	color: #666;
+}
+
+a{
+    color:#8EB335;
+    text-decoration: underline;
+}
+a:hover{
+    text-decoration: none;
+}
+
+.admtext
+{
+	font-size: 1em;
+	color: #444;
+}
+
+.admtext.right{
+  vertical-align:top;
+  height:535px;
+}
+
+.admtext a
+{
+	font-size: 1em;
+	color: #444;
+	text-decoration: underline;
+}
+
+.admtext a:hover
+{
+	color: #555;
+        text-decoration:none;
+}
+
+.admin_table_tree_buttons input{
+  margin-right:20px;
+}
+
+.menu
+{
+	color: #00869A;
+	padding: 4 0 4 0px;
+}
+
+.menu a
+{
+	color: #3D6B7E;
+	text-decoration: none;
+}
+
+.menu a:hover
+{
+	color: #00869A;
+}
+
+.gray {	background-color: #E4E4E4;}
+
+.blue
+{
+	background-color: #1393A7;
+	font-size: 0.9em;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.blue a
+{
+	font-size: 0.9em;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.blue a:hover
+{
+	font-size: 0.9em;
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+
+.lblue
+{
+	background-color: #D9EDF0;
+}
+
+.button
+{
+-webkit-box-shadow: rgba(0, 0, 0, 0.246094) 0px 1px 3px;
+background: #94b73e url(/img/admin/overlay-button.png) repeat-x 0px 0px;
+border:1px solid #94b73e;
+border-bottom: 1px solid rgba(0, 0, 0, 0.246094);
+border-bottom-left-radius: 5px 5px;
+border-bottom-right-radius: 5px 5px;
+border-top-left-radius: 5px 5px;
+border-top-right-radius: 5px 5px;
+color: white !important;
+cursor: pointer;
+display: inline-block;
+font-size: 0.8em;
+font-weight: bold;
+line-height: 1;
+overflow: visible;
+padding: 3px 10px 4px;
+position: relative;
+text-decoration: none;
+text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 1px;
+width: auto;
+}
+
+#admin_top_menu{
+  position:absolute;
+  right:30px;
+  top:10px;
+  z-index:999;
+
+}
+#admin_top_menu a{
+  color:#222;
+  font-size:0.8em;
+  text-decoration: none;
+  padding-right:20px;
+}
+#admin_top_menu a:hover{
+  text-decoration: underline;
+
+}
+#admin_top_menu img{
+  margin-right:5px;
+}
+.admin_table
+{
+  font-size:0.8em;
+	width: 100%;
+        color:#222;
+	border-collapse:collapse;
+        border:1px solid #eee;
+background:#fff;
+border-bottom-left-radius: 5px 5px;
+border-bottom-right-radius: 5px 5px;
+border-top-left-radius: 5px 5px;
+border-top-right-radius: 5px 5px;
+    -moz-box-shadow: #eee 5px 5px 6px;
+
+    -webkit-box-shadow: #eee 5px 5px 6px;
+
+    box-shadow: #eee 5px 5px 6px;
+}
+
+.admin_table th
+{
+	text-align: center;
+	color: white;
+	background-color: #abc570;
+	font-weight: bold;
+	padding: 3px;
+}
+
+.admin_table td
+{
+	padding: 3 5 3 5px;
+}
+
+fieldset
+{
+	border: 1px solid #CCCCCC;
+}
+
+.textBox
+{
+	width: 100%;
+	font-size: 13px;
+	padding: 1px;
+}
+
+.GreenBox
+{
+	width: 100%;
+	font-size: 13px;
+	padding: 1px;
+	border: 1px solid Green;
+}
+
+.RedBox
+{
+	width: 100%;
+	font-size: 13px;
+	padding: 1px;
+	border: 1px solid Red;
+}
+
+
+
+.admin_message {
+	text-align: center;
+	font-weight: bold;
+}
+
+#adminMenu
+{
+  margin-top:50px;
+	vertical-align: middle;
+}
+
+#adminMenu a
+{
+  font-size:0.8em;
+  color:#444;
+	display: block;
+	text-decoration: none;
+	padding: 4px;
+	padding-left: 20px;
+	/*background: URL(/img/admin/arrow_right_16.png) left no-repeat;*/
+}
+#adminMenu a.thisismodule
+{
+	background: URL(/img/admin/i6_white.png) left no-repeat!important;
+}
+#adminMenu a.thisismodule.selected
+{
+	background: URL(/img/admin/i6.png) left no-repeat!important;
+}
+#adminMenu a:visited{
+  text-decoration: none;
+}
+#adminMenu a:hover
+{
+	color: #222;
+	text-decoration: underline;
+}
+#adminMenu a.selected
+{
+  padding-left:20px;
+  color:#000;
+	font-weight: bold;
+	background: URL(/img/admin/arrow_right_16.png) left no-repeat;
+}
+#adminMenu a.selected.level1,#adminMenu a.childed.selected.level1
+{
+  /*padding-left:36px;*/
+}
+#adminMenu a.selected.level2,#adminMenu a.childed.selected.level2
+{
+  /*padding-left:36px;*/
+}
+#adminMenu a.selected.level3,#adminMenu a.childed.selected.level3
+{
+
+}
+#adminMenu a.selected.level4,#adminMenu a.childed.selected.level4
+{
+
+}
+#adminMenu a.selected.level5,#adminMenu a.childed.selected.level5
+{
+
+}
+#adminMenu a.selected.level6,#adminMenu a.childed.selected.level6
+{
+
+}
+#adminMenu a.childed.selected
+{
+  /*padding-left: 36px;
+	background: URL(/img/admin/arrow_right_32.png) left no-repeat;*/
+}
+#adminMenu a.childSelected
+{
+ font-weight:bold;
+ color:#000;
+ font-style:italic;
+}
+#adminMenu a.childed
+{
+
+  background: URL(/img/admin/add_16.png) left no-repeat!important;
+	text-decoration: none;
+}
+
+#adminMenu a.level2{
+  /*background: URL(/img/admin/arrow_right_16_blue.png) left no-repeat;*/
+}
+
+.treeview
+{
+}
+.treeview div
+{
+}
+.treeview a
+{
+	display: block;
+	padding-top: 5px;
+}
+
+.text, .text span
+{
+	color: #222;
+}
+
+.text a, .text a:hover
+{
+	color: #3D6B7E;
+	text-decoration: underline;
+}
+
+.dropdownlist
+{
+	width: 100%;
+}
+
+#wait{position: absolute; left: 40%; top: 50%;height:64px; display:none; background:#ffffff url(/img/admin/load.gif) left bottom no-repeat; border: #eee 1px solid; padding-right: 10px;padding-left:77px;padding-top:35px;text-align: center; z-index: 999}
+
+.validateError
+{
+	color: #f00;
+}
+
+.site_lang
+{
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-bottom: 20px;
+}
+
+.site_lang span
+{
+	display: block;
+	margin-bottom: 3px;
+}
+
+.site_lang select
+{
+	width: 250px;
+}
+
+#languageForm
+{
+	margin: 0px;
+}
+.page_header input{
+    font-size:1.4em;
+    border:none;
+    color:#333;
+}
+.module_add_fieldset{
+    margin-top:20px;
+}
+.module_add_table{
+ font-size:0.8em;
+ margin-bottom:10px
+}
+
+#foo {
+	width:980px;
+	position:relative;
+	margin:0 auto;
+        height:100%;
+        margin-top:60px;
+}
+.warning{
+        color:#fff;
+        padding:10px;
+        background:#acb78e;
+}
+.paid{
+    color:#8EB335;
+}

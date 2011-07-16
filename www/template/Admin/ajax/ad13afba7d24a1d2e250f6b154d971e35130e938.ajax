@@ -1,0 +1,20 @@
+
+<table class="admin_table">
+<tr>
+<th width="20">№</th>
+<th width="50">Дата</th>
+<th>Заголовок</th>
+<th colspan="2">Опции</th>
+</tr>
+{{foreach item=LeaderItem from=$Data.NewsList}}
+<tr>
+	<td width="20">{{$LeaderItem.Numer}}</td>
+	<td width="50">{{$LeaderItem.date|date_format:"%d.%m.%Y"}}</td>
+	<td>{{$LeaderItem.title}}</td>
+	<td align="center" width="30">
+		{{*<input type="image" name="handlerBtnEdit:{{$LeaderItem.id}}" id="btnEdit" src="{{$Address}}img/op_edit.gif" alt="Изменить" title="Изменить" height="16" width="16" onclick="editNews('{{$LeaderItem.id}}'); return false;" />*}}
+		<a href="../../admin/modules/{{$Data.ModuleId}}.php?NewsId={{$LeaderItem.id}}"><img src="{{$Address}}img/op_edit.gif"  /></a>
+	</td>
+	<td align="center" width="30"><input type="image" name="handlerBtnDel:{{$LeaderItem.id}}" src="/img/admin/close_16.png" alt="Удаление" height="16" width="16" onclick="return confirm('Удалить?');" /></td></tr>
+{{/foreach}}
+</table>

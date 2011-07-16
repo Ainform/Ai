@@ -1,0 +1,1 @@
+<iframe width="100%" height="100%" src="{$smarty.const.SiteUrl}util/adminer_ai.php?username={$smarty.const.DbUserName}"></iframe>

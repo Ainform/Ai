@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sitemap>
+  <siteMapNode title="Главная страница" visible="True" url="/admin/modules/569.php" moduleEdit="569" languageId="1" />
+  <siteMapNode title="О компании" visible="True" url="/admin/modules/410.php" moduleEdit="410" languageId="1" >
+  <siteMapNode title="Миссия компании" visible="True" url="/admin/modules/411.php" moduleEdit="411" languageId="1" />
+  <siteMapNode title="Новости" visible="True" url="/admin/modules/412.php" moduleEdit="412" languageId="1" />
+  <siteMapNode title="Наши достижения" visible="True" url="/admin/modules/533.php" moduleEdit="533" languageId="1" />
+  <siteMapNode title="Партнёры" visible="True" url="/admin/modules/418.php" moduleEdit="418" languageId="1" />
+  <siteMapNode title="Фото салона" visible="True" url="/admin/modules/538.php" moduleEdit="538" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/538.php" moduleEdit="538" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/419.php" moduleEdit="419" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Вакансии" visible="True" url="/admin/modules/420.php" moduleEdit="420" languageId="1" />
+  <siteMapNode title="Контакты" visible="True" url="/admin/modules/561.php" moduleEdit="561" languageId="1" />
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/410.php" moduleEdit="410" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Интернет-магазин" visible="True" url="/admin/modules/562.php" moduleEdit="562" languageId="1" >
+  <siteMapNode title="Оплата и доставка" visible="True" url="/admin/modules/567.php" moduleEdit="567" languageId="1" />
+  <siteMapNode title="Успешная оплата" visible="True" url="/admin/modules/568.php" moduleEdit="568" languageId="1" />
+    <siteMapNode title="Каталог" visible="True" url="/admin/modules/562.php" moduleEdit="562" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Галерея работ" visible="True" url="/admin/modules/421.php" moduleEdit="421" languageId="1" >
+  <siteMapNode title="Акции" visible="True" url="/admin/modules/554.php" moduleEdit="554" languageId="1" />
+  <siteMapNode title="Букеты и композиции" visible="True" url="/admin/modules/573.php" moduleEdit="573" languageId="1" />
+  <siteMapNode title="Свадебная флористика" visible="True" url="/admin/modules/563.php" moduleEdit="563" languageId="1" />
+  <siteMapNode title="Сувениры и подарки" visible="True" url="/admin/modules/566.php" moduleEdit="566" languageId="1" />
+  <siteMapNode title="Интерьеры и оформление выставок" visible="True" url="/admin/modules/560.php" moduleEdit="560" languageId="1" />
+  <siteMapNode title="Открытки ручной работы" visible="True" url="/admin/modules/491.php" moduleEdit="491" languageId="1" />
+  <siteMapNode title="Мастер-классы" visible="True" url="/admin/modules/559.php" moduleEdit="559" languageId="1" />
+  <siteMapNode title="Интересное" visible="True" url="/admin/modules/425.php" moduleEdit="425" languageId="1" />
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/421.php" moduleEdit="421" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Услуги" visible="True" url="/admin/modules/427.php" moduleEdit="427" languageId="1" >
+  <siteMapNode title="Корпоративным клиентам" visible="True" url="/admin/modules/502.php" moduleEdit="502" languageId="1" >
+  <siteMapNode title="Букеты" visible="True" url="/admin/modules/504.php" moduleEdit="504" languageId="1" />
+  <siteMapNode title="Корзины" visible="True" url="" languageId="1" >
+  </siteMapNode>
+  <siteMapNode title="Корпоративные праздники" visible="True" url="/admin/modules/505.php" moduleEdit="505" languageId="1" />
+  <siteMapNode title="Дни рождения сотрудников" visible="True" url="/admin/modules/506.php" moduleEdit="506" languageId="1" />
+  <siteMapNode title="Программа &#171;Удобное поздравление&#187;" visible="True" url="/admin/modules/507.php" moduleEdit="507" languageId="1" />
+  <siteMapNode title="Оформление интерьеров" visible="True" url="/admin/modules/511.php" moduleEdit="511" languageId="1" />
+  <siteMapNode title="Дополнительные услуги" visible="True" url="/admin/modules/509.php" moduleEdit="509" languageId="1" />
+  <siteMapNode title="Контакты" visible="True" url="/admin/modules/510.php" moduleEdit="510" languageId="1" />
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/502.php" moduleEdit="502" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/503.php" moduleEdit="503" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Мастер-классы" visible="True" url="/admin/modules/564.php" moduleEdit="564" languageId="1" />
+  <siteMapNode title="Свадебная флористика" visible="True" url="/admin/modules/485.php" moduleEdit="485" languageId="1" >
+  <siteMapNode title="Букет невесты" visible="True" url="/admin/modules/489.php" moduleEdit="489" languageId="1" />
+  <siteMapNode title="Украшения для мужчины" visible="True" url="/admin/modules/492.php" moduleEdit="492" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/492.php" moduleEdit="492" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/541.php" moduleEdit="541" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Украшения для невесты" visible="True" url="/admin/modules/493.php" moduleEdit="493" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/493.php" moduleEdit="493" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/542.php" moduleEdit="542" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Цветочное оформление торжества" visible="True" url="/admin/modules/494.php" moduleEdit="494" languageId="1" />
+  <siteMapNode title="Украшение свадебных машин" visible="True" url="/admin/modules/495.php" moduleEdit="495" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/495.php" moduleEdit="495" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/543.php" moduleEdit="543" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Свадебные аксессуары" visible="True" url="/admin/modules/496.php" moduleEdit="496" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/496.php" moduleEdit="496" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/544.php" moduleEdit="544" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Свадебная фотосессия" visible="True" url="/admin/modules/497.php" moduleEdit="497" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/497.php" moduleEdit="497" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/545.php" moduleEdit="545" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Свадебное предложение" visible="True" url="/admin/modules/498.php" moduleEdit="498" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/498.php" moduleEdit="498" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/546.php" moduleEdit="546" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Открытки и приглашения ручной работы" visible="True" url="/admin/modules/499.php" moduleEdit="499" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/499.php" moduleEdit="499" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/547.php" moduleEdit="547" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Подарочные букеты" visible="True" url="/admin/modules/500.php" moduleEdit="500" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/500.php" moduleEdit="500" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/548.php" moduleEdit="548" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Ценные советы" visible="True" url="/admin/modules/501.php" moduleEdit="501" languageId="1" />
+  <siteMapNode title="Отзывы клиентов" visible="True" url="/admin/modules/512.php" moduleEdit="512" languageId="1" />
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/485.php" moduleEdit="485" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Оформление интерьеров" visible="True" url="/admin/modules/540.php" moduleEdit="540" languageId="1" >
+  <siteMapNode title="Эксклюзивные решения" visible="True" url="/admin/modules/519.php" moduleEdit="519" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/519.php" moduleEdit="519" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/520.php" moduleEdit="520" thisIsModule="1" />
+  </siteMapNode>
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/540.php" moduleEdit="540" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Фотосессия в салоне" visible="True" url="/admin/modules/565.php" moduleEdit="565" languageId="1" />
+  <siteMapNode title="Оформление торжеств" visible="True" url="/admin/modules/488.php" moduleEdit="488" languageId="1" />
+  <siteMapNode title="Упаковка подарков" visible="True" url="/admin/modules/525.php" moduleEdit="525" languageId="1" />
+  <siteMapNode title="Оформление выставок" visible="True" url="/admin/modules/521.php" moduleEdit="521" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/521.php" moduleEdit="521" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/522.php" moduleEdit="522" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Интересные подарки" visible="True" url="/admin/modules/523.php" moduleEdit="523" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/523.php" moduleEdit="523" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/524.php" moduleEdit="524" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Открытки ручной работы" visible="True" url="/admin/modules/527.php" moduleEdit="527" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/527.php" moduleEdit="527" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/528.php" moduleEdit="528" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Эксклюзивные направления" visible="True" url="/admin/modules/436.php" moduleEdit="436" languageId="1" >
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/436.php" moduleEdit="436" thisIsModule="1" />
+    <siteMapNode title="Галерея" visible="True" url="/admin/modules/530.php" moduleEdit="530" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Доставка букетов" visible="True" url="/admin/modules/437.php" moduleEdit="437" languageId="1" >
+  <siteMapNode title="По городу" visible="True" url="/admin/modules/447.php" moduleEdit="447" languageId="1" />
+  <siteMapNode title="По России" visible="True" url="/admin/modules/448.php" moduleEdit="448" languageId="1" />
+  <siteMapNode title="По всему миру" visible="True" url="/admin/modules/449.php" moduleEdit="449" languageId="1" />
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/437.php" moduleEdit="437" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Книжная полка" visible="True" url="/admin/modules/531.php" moduleEdit="531" languageId="1" />
+  <siteMapNode title="Новый раздел" visible="True" url="" languageId="1" >
+  </siteMapNode>
+    <siteMapNode title="Текстовая страница" visible="True" url="/admin/modules/427.php" moduleEdit="427" thisIsModule="1" />
+  </siteMapNode>
+  <siteMapNode title="Заказы" visible="True" url="/admin/modules/483.php" moduleEdit="483" languageId="1" />
+
+  <siteMapNode title='Резервное копирование' alias='Backup' pageId='-1' visible='False' />
+  <siteMapNode title='База данных' alias='Bd' pageId='-2' visible='False' />
+  <siteMapNode title='Список ошибок' alias='ErrorsList' pageId='-3' visible='False' />
+  <siteMapNode title='Файловый менеджер' alias='FileManager' pageId='-4' visible='False' />
+  <siteMapNode title='Главная страница' alias='Index' pageId='-5' visible='False' />
+  <siteMapNode title='Структура сайта' alias='PagesList' pageId='-6' visible='False' />
+  <siteMapNode title='Выход' alias='SignOut' pageId='-7' visible='False' />
+</sitemap>

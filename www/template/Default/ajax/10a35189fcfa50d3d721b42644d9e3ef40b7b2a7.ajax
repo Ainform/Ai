@@ -1,0 +1,38 @@
+
+<form action="" id="myform" name="myform"><input type="hidden" id="order" name="order" value="{{$Order}}" /></form>
+<table width="100%" cellpadding="0" cellspacing="0" class="goods_list text">
+  <thead><tr><th width="10" style="padding: 0px;">&nbsp;</th><th align="left">Наименование</th></tr></thead>
+	{{foreach item=Good from=$Data.GoodsList key=i}}
+	{{if $i mod 2 != 0 && $i !== 0}}
+     <tr><td colspan="2">
+            <a href="{{goodLink id=$Good.GoodId}}" class="goodLink" style="padding-left: 0px;">{{$Good.Title}}</a>
+          </td></tr>
+  <tr class="even">
+		{{else}}
+        <tr><td colspan="2">
+            <a href="{{goodLink id=$Good.GoodId}}" class="goodLink" style="padding-left: 0px;">{{$Good.Title}}</a>
+          </td></tr>
+  <tr class="odd">
+	{{/if}}
+    <td width="10" style="padding: 5px;">
+      <table width="214" cellspacing="0" cellpadding="0" border="0" style="background: url(&quot;/img/menu-bot-2.gif&quot;) repeat scroll 0% 0% transparent;">
+                  <tbody><tr>
+                    <td><img width="15" height="193" alt="" src="/img/1x1.gif"></td>
+                    <td width="194" valign="top">
+
+<a href="{{goodLink id=$Good.GoodId}}" class="goodLink">{{if $Good.Description != "" || $Good.Image}}<img src="img/i.gif" style="margin: 0px;">{{/if}}</a>
+                    </td>
+                    <td><img width="15" height="193" alt="" src="/img/1x1.gif"></td>
+                  </tr>
+                </tbody></table>
+      </td>
+    <td class="good_name">
+    
+    <p>Производитель:<span style="padding-left: 0px;">{{$Good.ManufacturerId}}</span>
+    <p>Артикул (код):<span style="padding-left: 0px;">{{$Good.Code}}</span>
+    <p>Розничная цена:<span style="padding-left: 0px;">{{$Good.Price}}</span>
+    <p>Описание:<span style="padding-left: 0px;">{{$Good.Description}}</span>
+    </td></tr>
+  {{/foreach}}
+</table>
+	

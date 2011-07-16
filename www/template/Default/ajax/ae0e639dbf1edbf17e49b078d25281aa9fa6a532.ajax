@@ -1,0 +1,38 @@
+
+	<form action="" id="myform" name="myform"><input type="hidden" id="order" name="order" value="{{$Order}}" /></form>
+	<table width="100%" cellpadding="0" cellspacing="0" class="goods_list text">
+	<thead>
+		<tr>
+			<th width="10" style="padding: 0px;">&nbsp;</th>
+			<th align="left">Наименование</th>
+			<!--<th>Описание</th>-->
+<!--			<th>
+				<a href="#ajax" name="handlerBtnSort:Price">Цена (руб.)</a>
+			</th>
+			<th>
+				<a href="#ajax" name="handlerBtnSort:code">Код</a>
+			</th>
+			<th>
+				<a href="#ajax" name="handlerBtnSort:quantity">Наличие</a>
+			</th>-->
+		</tr>
+	</thead>
+	{{foreach item=Good from=$Data.GoodsList key=i}}
+	{{if $i mod 2 != 0 && $i !== 0}}
+		<tr class="even">
+		{{else}}
+		<tr class="odd">
+	{{/if}}
+			<td width="10" style="padding: 5px;"><a href="{{goodLink id=$Good.GoodId}}" class="goodLink">{{if $Good.Description != "" || $Good.Image}}<img src="img/i.gif" style="margin: 0px;">{{/if}}</a></td>
+			<td class="good_name">
+				<a href="{{goodLink id=$Good.GoodId}}" class="goodLink" style="padding-left: 0px;">{{$Good.Title}}</a>
+			</td>
+			<!--<td class="good_desc">{{$Good.Description}}</td>-->
+			<!--<td class="good_price" width="100">{{$Good.Price}}</td>
+			<td class="good_code" width="100">{{$Good.Code}}</td>
+			<td class="good_quantity" width="100">{{if $Good.quantity == 0}}временно отсутствует{{/if}}{{if $Good.quantity > 0 && $Good.quantity <= 3}}*{{/if}}{{if $Good.quantity > 3 && $Good.quantity <=10}}**{{/if}}{{if $Good.quantity > 10}}***{{/if}}</td>
+			-->
+		</tr>
+	{{/foreach}}
+	</table>
+	

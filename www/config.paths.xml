@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Folder Id="root">
+	<Folder Id="admin" Name="admin" />
+	<Folder Id="App_Code" Name="admin" />
+	<Folder Id="backup" Name="backup" />
+	<Folder Id="cache" Name="cache">
+		<Folder Id="cacheImages" Name="images" />
+	</Folder>
+	<Folder Id="config" Name="config" />
+	<Folder Id="menu" Name="menu" />
+	<Folder Id="file" Name="upload" />
+	<Folder Id="img" Name="img" />
+	<Folder Id="log" Name="log" />
+	<Folder Id="module" Name="module" />
+	<Folder Id="template" Name="template" />
+	<Folder Id="upload" Name="upload" />
+</Folder>

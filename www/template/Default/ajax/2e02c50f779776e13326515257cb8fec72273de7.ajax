@@ -1,0 +1,90 @@
+
+{{if isset($Data.GoodsList) && count($Data.GoodsList) > 0 && empty($Data.HeadText)}}
+<h1>Состав заказа</h1>
+
+{{$Data.HeadText}}
+
+<table class="table_basket" width="100%">
+  <tr>
+    <th>№<br /> п/п</th>
+    <th>Производитель</th>
+	<th>Наименование, краткие хар-ки</th>
+    <th>Модель, артикул</th>
+    <th>Кол-во</th>        
+    <th>Цена, за&nbsp;ед.</th>
+	<th>Сумма</th>
+    <th>&nbsp;</th>
+  </tr>
+  <tbody>
+	{{assign var="commonPrice" value=0}}
+	{{foreach item=Good from=$Data.GoodsList name=goods}}
+    <tr>
+      <td>{{$smarty.foreach.goods.index}}</td>
+      <td align="center">{{$Good.Full.ManufacturerName}}</td>
+	  <td>{{$Good.Title}}</td>
+      <td>{{$Good.Full.Code}}</td>
+      <td align="center"><input type="text" size="3" value="{{$Good.Count}}" name="count{{$Good.GoodId}}"/></td>
+      <td align="center">{{*$Good.Price*}}</td>
+      <td align="center">{{$Good.Price * $Good.Count}}</td>
+      <td><input type="image" src="/admin/img/op_delete.gif" name="handlerBtnDelete:{{$Good.GoodId}}" onclick="return confirm('Удалить?');" /></td>
+    </tr>
+		{{math equation="sum+price*count" sum=$commonPrice price=$Good.Price count=$Good.Count assign="commonPrice"}}
+	{{/foreach}}
+    <tr>
+      <td class="left_bottom"></td><td class="itogo" style="text-align: right;" colspan="5">Итого:</td><td colspan="" align="right" class="red"><b>{{$commonPrice}}</b></td>
+    </tr>
+  </tbody>
+</table>
+<table cellpadding="3" style="text-transform: uppercase"><tr><td class="cart_currency_title">Валюта заказа:</td><td>
+      <input type="radio" value="0" name="cart_currency" checked id="rubl"><label for="rubl" >Рубли</label>&nbsp;&nbsp;
+      <input type="radio" value="1" name="cart_currency" id="euro"><label for="euro" >Евро</label>&nbsp;&nbsp;
+      <input type="radio" value="2" name="cart_currency" id="dollar"><label for="dollar" >Доллары США</label></td>
+  </tr>
+</table>
+<p class="cart_additional_message">
+  Если вы изменили количество или изменили валюту заказа — нажмите кнопку <span>«Пересчитать»</span>.
+</p>
+
+{{if !isset($username)}}
+<div style="margin: 20px 0px;">
+<table width="80%" class="text" align="left">
+	<tr height="30" valign="bottom">
+		<td width="160" align="left"><b>Контактное лицо<span style="color:red;">*</span>:</b></td>
+		<td width="230">{{TextBox id="txtOrderName" maxlength="100" class="text_box_contact" value=""}}</td>
+		<td class="red">{{Validator for="txtOrderName" rule="NotNull" message="Введите имя"}}</td>
+	</tr>
+	<tr>
+		<td align="left"><b>Контактный телефон<span style="color:red;">*</span>:</b></td>
+		<td>{{TextBox id="txtOrderPhone" maxlength="100" class="text_box_contact" value=""}}</td>
+		<td class="red">{{Validator for="txtOrderPhone" rule="NotNull" message="Введите номер телефона"}}</td>
+	</tr>
+	<tr>
+		<td align="left"><b>E-mail<span style="color:red;">*</span>:</b></td>
+		<td>{{TextBox id="txtOrderEmail" maxlength="100" class="text_box_contact" value=""}}</td>
+		<td class="red">{{Validator for="txtOrderEmail" rule="NotNull Email" message="Введите e-mail"}}</td>
+	</tr>
+</table></div><br style="clear: both;" /><br style="clear: both;" />
+{{/if}}
+
+<b style="text-transform: uppercase;">Дополнительная информация</b>
+<!--<p>Отправка спецификации на email: Да</p>-->
+<p style="padding:0!important">Дополнительные пожелания и комментарии:</p>
+<textarea cols="50" rows="7" name="additional"></textarea>
+
+
+<table width="60%" class="text">
+  <tr height="30" valign="bottom">
+    <td><input class="button" type="submit" value="Пересчитать »" name="handlerRecalculate" style="background:none!important;border:none!important;color:#fff;cursor:pointer;" /></td>
+    <td><input class="button" type="submit" value="Заказать »" name="handlerMakeOrder" style="background:none!important;border:none!important;color:#fff;cursor:pointer;" /></td>
+    <td><input class="button" type="submit" value="Очистить корзину »" name="handlerClearCart" style="background:none!important;border:none!important;color:#fff;cursor:pointer;" /></td>
+    
+  </tr>
+</table>
+{{else}}
+	{{if empty($Data.HeadText)}}
+		В корзине товаров пока нет товаров.
+	{{else}}
+		{{ $Data.HeadText }}
+	{{/if}}
+
+{{/if}}

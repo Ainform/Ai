@@ -1,0 +1,21 @@
+.good_buy input{
+
+    border:none;
+
+    width:128px;
+
+    height:39px;
+
+    font-style: italic;
+
+    color:#76584a;
+
+    font-family:Georgia, arial;
+
+    cursor:pointer;
+
+    font-size:1.1em;
+
+    background:url(/css/images/buy.png) no-repeat;
+
+}

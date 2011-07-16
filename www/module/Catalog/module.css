@@ -1,0 +1,92 @@
+.section_image, .good_image{
+    margin:0 auto;
+    width:134px;
+    height:134px;
+    background:url(/css/images/place.jpg) center center no-repeat;
+}
+.good_image_inside{
+    margin:0 auto;
+    width:250px;   
+}
+.good_image_inside a span{
+    position: absolute;
+    right:10px;
+    top:10px;
+    color:#999;
+}
+.good_image_inside a{
+    display:block;
+    position: relative;
+    text-decoration: none;
+}
+.section_image a img, .good_image a img, .good_image img{
+    margin-top:12px;
+
+}
+.section_title {
+    color:#55493f;
+    text-decoration:none;
+}
+.section_title:hover {
+    text-decoration:underline;
+}
+.section_div, .good_div{
+    float:left;
+    width:150px;
+    height:300px;
+    margin:5px;
+    margin-top:20px;
+    text-align: center;
+}
+.section_div{
+    height:200px;
+}
+.good_buy input{
+    border:none;
+    width:128px;
+    height:39px;
+    font-style: italic;
+    color:#76584a;
+    font-family:Georgia, arial;
+    cursor:pointer;
+    font-size:1.1em;
+    background:url(/css/images/buy.png) no-repeat;
+}
+.good_price{
+    color:#95271f;
+}
+.good_price span{
+    font-size:1.4em;
+    font-family:arial;
+}
+.good_title {
+    height:40px;
+    color:#55493f;
+    text-decoration:none;
+    cursor:pointer;
+}
+.good_title:hover {
+    text-decoration:underline;
+}
+.good_page_left{
+    float:left;
+    width:250px;
+    margin-right:20px;
+    text-align: center;
+}
+.goodtitle{
+    margin-top:0px;
+}
+.nextprev{
+  
+}
+.prev{
+    display: block;
+    margin:15px 0px;
+    float:left;
+}
+.next{
+     display: block;
+     margin:15px 0px;
+    float:right;
+}

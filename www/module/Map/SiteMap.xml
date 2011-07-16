@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sitemap>
+	<siteMapNode title="Главная" alias="" visible="False" horizontal="True" pageId="1" languageId="1"></siteMapNode>
+	<siteMapNode title="Издание Попутный ветер" alias="28" visible="False" horizontal="False" pageId="50" languageId="1"></siteMapNode>
+	<siteMapNode title="Издание Широкая река" alias="Издание Широкая река" visible="False" horizontal="False" pageId="51" languageId="1"></siteMapNode>
+	<siteMapNode title="Европа и США" alias="evropa_i_ssha" visible="True" horizontal="False" pageId="18" languageId="1"></siteMapNode>
+	<siteMapNode title="Азиатско-Тихоокеанский регион" alias="aziatsko-tixookeanskij_region" visible="True" horizontal="False" pageId="19" languageId="1"></siteMapNode>
+	<siteMapNode title="Оборонная политика" alias="oboronnaja_politika" visible="True" horizontal="False" pageId="20" languageId="1"></siteMapNode>
+	<siteMapNode title="Международная экономика" alias="mezhdunarodnaja_ekonomika" visible="True" horizontal="False" pageId="21" languageId="1"></siteMapNode>
+	<siteMapNode title="Отраслевая экономика" alias="otraslevaja_ekonomika" visible="True" horizontal="False" pageId="22" languageId="1"></siteMapNode>
+	<siteMapNode title="Гуманитарные исследования" alias="gumanitarnye_issledovanija" visible="True" horizontal="False" pageId="23" languageId="1"></siteMapNode>
+	<siteMapNode title="Актуальные комментарии " alias="aktualnye_kommentarii" visible="False" horizontal="False" pageId="24" languageId="1"></siteMapNode>
+	<siteMapNode title="Мероприятия РИСИ " alias="meroprijatija_risi_" visible="False" horizontal="False" pageId="25" languageId="1"></siteMapNode>
+	<siteMapNode title="Тематические проекты " alias="tematicheskie_proekty_" visible="False" horizontal="False" pageId="26" languageId="1"></siteMapNode>
+	<siteMapNode title="Публикации" alias="publikatsii" visible="True" horizontal="False" pageId="27" languageId="1">
+	<siteMapNode title="Издания РИСИ" alias="izdanija_risi" visible="True" horizontal="False" pageId="28" languageId="1">
+	<siteMapNode title="Издание первое" alias="izdanie_pervoe" visible="True" horizontal="False" pageId="52" languageId="1"></siteMapNode></siteMapNode>
+	<siteMapNode title="Журнал" alias="zhurnal" visible="True" horizontal="False" pageId="29" languageId="1"></siteMapNode></siteMapNode>
+	<siteMapNode title="Доклады и выступления" alias="doklady_i_vystuplenija" visible="True" horizontal="False" pageId="30" languageId="1"></siteMapNode>
+	<siteMapNode title="Выступления в СМИ" alias="vystuplenija_v_smi" visible="True" horizontal="False" pageId="31" languageId="1"></siteMapNode>
+	<siteMapNode title="Анонсы" alias="anonsy" visible="True" horizontal="False" pageId="32" languageId="1"></siteMapNode>
+	<siteMapNode title="Архив" alias="arxiv" visible="True" horizontal="False" pageId="33" languageId="1"></siteMapNode>
+	<siteMapNode title="Об институте " alias="ob_institute" visible="True" horizontal="True" pageId="34" languageId="1">
+	<siteMapNode title="Руководство" alias="rukovodstvo" visible="True" horizontal="False" pageId="35" languageId="1"><siteMapNode title="Владимир Путин" alias="?personalsId=1" visible="False" personalsId="1" moduleId="149" />
+<siteMapNode title="Велосипед" alias="?personalsId=2" visible="False" personalsId="2" moduleId="149" />
+</siteMapNode>
+	<siteMapNode title="Деятельность" alias="dejatelnost" visible="True" horizontal="False" pageId="36" languageId="1"></siteMapNode>
+	<siteMapNode title="Евро-атлантический отдел" alias="evro-atlanticheskij_otdel" visible="True" horizontal="False" pageId="37" languageId="1"></siteMapNode>
+	<siteMapNode title="Отдел ближнего зарубежья" alias="o_otdel_blizhnego_zarubezhja" visible="True" horizontal="False" pageId="38" languageId="1"></siteMapNode>
+	<siteMapNode title="Отдел проблем Азии и Тихоокеанского региона " alias="otdel_problem_azii_i_tixookeanskogo_regiona" visible="True" horizontal="False" pageId="39" languageId="1">
+	<siteMapNode title="Работы" alias="raboty" visible="True" horizontal="False" pageId="49" languageId="1"></siteMapNode></siteMapNode>
+	<siteMapNode title="Отдел оборонной политики" alias="otdel_oboronnoj_politiki" visible="True" horizontal="False" pageId="40" languageId="1"></siteMapNode>
+	<siteMapNode title="Отдел международной экономики" alias="otdel_mezhdunarodnoj_ekonomiki" visible="True" horizontal="False" pageId="41" languageId="1"></siteMapNode>
+	<siteMapNode title="Отдел отраслевой и региональной экономики" alias="otdel_otraslevoj_i_regionalnoj_ekonomiki" visible="True" horizontal="False" pageId="42" languageId="1"></siteMapNode>
+	<siteMapNode title="Отдел гуманитарных исследований" alias="otdel_gumanitarnyx_issledovanij" visible="True" horizontal="False" pageId="43" languageId="1"></siteMapNode>
+	<siteMapNode title="Аспирантура" alias="aspirantura" visible="True" horizontal="False" pageId="44" languageId="1"></siteMapNode></siteMapNode>
+	<siteMapNode title="Вакансии" alias="vakansii" visible="True" horizontal="True" pageId="45" languageId="1"></siteMapNode>
+	<siteMapNode title="Ученый совет " alias="uchenyj_sovet" visible="True" horizontal="True" pageId="46" languageId="1"></siteMapNode>
+	<siteMapNode title="Контакная информация" alias="kontaknaja_informatsija" visible="True" horizontal="False" pageId="15" languageId="1"></siteMapNode>
+	<siteMapNode title="Контакты" alias="kontakty" visible="True" horizontal="True" pageId="47" languageId="1"></siteMapNode>
+	<siteMapNode title="Карта сайта" alias="karta_sajta" visible="True" horizontal="True" pageId="48" languageId="1"></siteMapNode>
+</sitemap>
