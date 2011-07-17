@@ -1,0 +1,11 @@
+
+/www/template/Default/compile/*.*
+/www/.tmb
+/www/App_Code/Zend/*.*
+/www/backup/*.*
+/www/template/Default/cache/*.*
+/www/template/Default/ajax/*.*
+/www/template/Admin/compile/*.*
+/www/template/Admin/cache/*.*
+/www/template/Admin/ajax/*.*
+/www/upload/*.*
