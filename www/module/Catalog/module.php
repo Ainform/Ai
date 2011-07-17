@@ -326,9 +326,12 @@ class CatalogModule extends BMC_BaseModule {
         return $good["Title"];
     }
 
-    /**
-      Биндим данные по конкретному товару
-     */
+	/**
+	Биндим данные по конкретному товару
+	 * @param $goodId
+	 * @param null $sectionId
+	 * @return
+	 */
     private function BindGood($goodId, $sectionId = null) {
         $smarty = PHP_Smarty::GetInstance();
         //$smarty->register_function("GetGoodTitle", array($this, "GetGoodTitle"));

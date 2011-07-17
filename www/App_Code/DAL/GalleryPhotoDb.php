@@ -126,7 +126,7 @@ class DAL_GalleryPhotoDb extends DAL_BaseDb
 	 */
 	public function GetFromSection($sectionId, $page=0, $count=10)
 	{
-		return $this->selectPage(array("SectionId" => $sectionId), "Order", false, $page, $count);
+		return $this->selectPage(array("SectionId" => $sectionId), "Order", "ASC", $page, $count);
 	}
 
         public function GetPageAliasByGoodId($id){
@@ -141,7 +141,7 @@ class DAL_GalleryPhotoDb extends DAL_BaseDb
 	 */
 	public function GetFromSectionByManufacturer($sectionId,$manufacturerId, $page=0, $count=10)
 	{
-		return $this->selectPage(array("SectionId" => $sectionId,"ManufacturerId"=>$manufacturerId), "Order", false, $page, $count);
+		return $this->selectPage(array("SectionId" => $sectionId,"ManufacturerId"=>$manufacturerId), "Order", "ASC", $page, $count);
 	}
 
 	public function GetFromSectionSort($sectionId,$order,$superorder)
@@ -265,7 +265,7 @@ class DAL_GalleryPhotoDb extends DAL_BaseDb
 		$result=$baseDb->query("SELECT MAX(`Order`) FROM $this->TableName WHERE `SectionId`='".$goodRow['SectionId']."'");
 		if($result){
 		$goodRow['Order']=($result[0]['MAX(`Order`)']+1);}
-		
+
 		$this->insert($goodRow);
 
 		$goodId = $this->db->GetLastId();
@@ -380,7 +380,7 @@ class DAL_GalleryPhotoDb extends DAL_BaseDb
 	{
 		$sql = "TRUNCATE TABLE `goods`";
 		$this->db->ExecuteScalar($sql);
-	}	
+	}
 
 	public function GetPriceForUser($UserId, $Code){
 

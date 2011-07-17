@@ -91,16 +91,16 @@ class DAL_CommentsDb extends DAL_BaseDb {
      */
     public function GetPage($moduleId, $page, $recordsOnPage, $isArchive=false) {
     	$rows = null;
-		
+
     	if (!$isArchive)
-			$rows = $this->selectPage(array("moduleid" => $moduleId),"date",true,$page,$recordsOnPage);
+			$rows = $this->selectPage(array("moduleid" => $moduleId),"date","DESC",$page,$recordsOnPage);
         else
-        	$rows = $this->selectPage(array(),"date",true,$page,$recordsOnPage);
-		
+        	$rows = $this->selectPage(array(),"date","DESC",$page,$recordsOnPage);
+
 		 foreach($rows as &$row){
 			$row['Url'] = "/?commentsId=".$row["id"];
         }
-		
+
 		return $rows;
     }
 
@@ -114,22 +114,22 @@ class DAL_CommentsDb extends DAL_BaseDb {
      */
     public function GetPageOnDate($moduleId, $page, $recordsOnPage, $date, $isArchive=false) {
     	if (!$isArchive)
-        $rows=$this->selectPage(array("moduleid" => $moduleId),"date",true,$page,$recordsOnPage);
+        $rows=$this->selectPage(array("moduleid" => $moduleId),"date","DESC",$page,$recordsOnPage);
         else
-        	$rows=$this->selectPage(array(),"date",true,$page,$recordsOnPage);
+        	$rows=$this->selectPage(array(),"date",null,$page,$recordsOnPage);
 
         $newrow=array();
         foreach($rows as $row){
             //Debug(date("d.m.Y",$row['date']));
             if(date("d.m.Y",$row['date'])==$date){
 				$row["Url"] = "/?commentsId=".$row["id"];
-                $newrow[]=$row;				
+                $newrow[]=$row;
             }
         }
-		
+
         return $newrow;
     }
-    
+
    /*
     * Запрашиваем данные для главной страницы
      */
@@ -145,7 +145,7 @@ FROM $this->TableName n
    on n.moduleid=pm.moduleid
 join Pages p on pm.pageid = p.pageid
 WHERE onfront > 0 order by onfront, date desc limit $page, $recordsOnPage");
-    	
+
         /*
         * Из ТЗ:
         * Должны выводится все новости, отмеченные для вывода на главной странице

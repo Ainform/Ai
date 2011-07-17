@@ -184,7 +184,7 @@ class DAL_GalleryDb extends DAL_BaseDb {
   }
 
   public function GetSectionsByPage($sectionId, $page, $recordsOnPage) {
-	 return $this->selectPage(array("ParentId" => $sectionId),"date",true,$page,$recordsOnPage);
+	 return $this->selectPage(array("ParentId" => $sectionId),"date",null,$page,$recordsOnPage);
   }
 
   public function GetSectionsForGoods ($sectionId, $module) {
@@ -208,7 +208,7 @@ class DAL_GalleryDb extends DAL_BaseDb {
 		return $this->select(array("ModuleId" => $moduleId, "ParentId" => -1), "Order");
   }
   public function GetRootSectionsByPage($moduleId, $sectionId, $page, $recordsOnPage) {
-	 return $this->selectPage(array("ParentId" => $sectionId,"ModuleId"=>$moduleId),"date",true,$page,$recordsOnPage);
+	 return $this->selectPage(array("ParentId" => $sectionId,"ModuleId"=>$moduleId),"date",null,$page,$recordsOnPage);
   }
 
   /**
@@ -253,24 +253,12 @@ class DAL_GalleryDb extends DAL_BaseDb {
   }
 
   /**
-	* Возвращает экземпляр класса OrderHelper
-	*
-	* @return Helpers_OrderHelper
-	*/
-  private function Order() {
-	 $orderHelper = new Helpers_OrderHelper();
-	 $orderHelper->SetInfo('sections', 'SectionId', 'ParentId');
-
-	 return $orderHelper;
-  }
-
-  /**
 	* Поднимает раздел
 	*
 	* @param int $sectionId идентификатор раздела
 	*/
   public function Up($sectionId) {
-	 $this->Order()->UpRecord($sectionId);
+	 $this->Order($this->TableName, 'SectionId', 'ParentId')->UpRecord($sectionId);
   }
 
   /**
@@ -279,7 +267,7 @@ class DAL_GalleryDb extends DAL_BaseDb {
 	* @param int $sectionId идентификатор раздела
 	*/
   public function Down($sectionId) {
-	 $this->Order()->DownRecord($sectionId);
+	 $this->Order($this->TableName, 'SectionId', 'ParentId')->DownRecord($sectionId);
   }
 
   /**

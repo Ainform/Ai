@@ -16,36 +16,6 @@ class DAL_ModulesDb extends DAL_BaseDb {
     protected $TableName = "pagemodules";
 
     /**
-      Возвращает данные о структуре таблицы в виде название колонки -> тип колонки
-
-      @return array структура таблицы
-     */
-    protected function getStructure() {
-        return array(
-            "PageId" => "int",
-            "ModuleId" => "int",
-            "ModuleType" => "string",
-            "Order" => "int"
-        );
-    }
-
-    /**
-      Возвращает первичные ключи таблицы
-
-      @return array ключи таблицы
-     */
-    protected function getKeys() {
-        return array("ModuleId");
-    }
-
-    /**
-      @return array автоинкрементные индексы таблицы
-     */
-    protected function getIndexes() {
-        return array("ModuleId");
-    }
-
-    /**
      * Констуктор, инициализирует соединение
      *
      */
@@ -53,16 +23,6 @@ class DAL_ModulesDb extends DAL_BaseDb {
         parent::__construct();
 
         $this->LoadData();
-    }
-
-    /**
-      Помошник для управления порядком страниц
-     */
-    private function Order() {
-        $orderHelper = new Helpers_OrderHelper();
-        $orderHelper->SetInfo('pagemodules', 'ModuleId', 'PageId');
-
-        return $orderHelper;
     }
 
     /**
@@ -254,7 +214,7 @@ class DAL_ModulesDb extends DAL_BaseDb {
      */
     public function AddModule($pageId, $moduleType) {
         $row = array("PageId" => $pageId, "ModuleType" => $moduleType);
-        $row['Order'] = $this->Order()->InsertRecord($pageId);
+        $row['Order'] = $this->Order($this->TableName, 'ModuleId', 'PageId')->InsertRecord($pageId);
         $this->insert($row);
         $moduleId = $this->db->GetLastId();
 
@@ -278,7 +238,7 @@ class DAL_ModulesDb extends DAL_BaseDb {
         } catch (Exception $e) {
             var_dump($e);
         }
-        $this->Order()->DeleteRecord($moduleId);
+        $this->Order($this->TableName, 'ModuleId', 'PageId')->DeleteRecord($moduleId);
         $this->delete(array("ModuleId" => $moduleId));
     }
 
@@ -291,11 +251,11 @@ class DAL_ModulesDb extends DAL_BaseDb {
     }
 
     public function UpModule($moduleId) {
-        $this->Order()->UpRecord($moduleId);
+        $this->Order($this->TableName, 'ModuleId', 'PageId')->UpRecord($moduleId);
     }
 
     public function DownModule($moduleId) {
-        $this->Order()->DownRecord($moduleId);
+        $this->Order($this->TableName, 'ModuleId', 'PageId')->DownRecord($moduleId);
     }
 
 }

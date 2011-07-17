@@ -16,7 +16,7 @@ class DAL_AnalyticsFilesDb extends DAL_BaseDb {
 
     /**
      Возвращает данные о структуре таблицы в виде название колонки -> тип колонки
-		
+
      @return array структура таблицы
      */
     protected function getStructure() {
@@ -32,7 +32,7 @@ class DAL_AnalyticsFilesDb extends DAL_BaseDb {
 
     /**
      Возвращает первичные ключи таблицы
-		
+
      @return array ключи таблицы
      */
     protected function getKeys() {
@@ -67,7 +67,7 @@ class DAL_AnalyticsFilesDb extends DAL_BaseDb {
     /**
      * Возвращает Файл
      *
-     * @param int $Id идентификатор 
+     * @param int $Id идентификатор
      * @return array
      */
     public function Get($Id) {
@@ -90,7 +90,7 @@ class DAL_AnalyticsFilesDb extends DAL_BaseDb {
                 //если папка существует - удаляем
                 if (is_dir($folderPath))
                 rmdir($folderPath);
-                
+
 		$this->delete(array("folder" => strtolower($folder)));
 	}
 
@@ -140,7 +140,7 @@ class DAL_AnalyticsFilesDb extends DAL_BaseDb {
     }
 
     /**
-     Возвращает папку для файлов 
+     Возвращает папку для файлов
      */
     public static function GetFilesFolder($Id = null) {
         $folder = "analytics";
@@ -179,23 +179,12 @@ class DAL_AnalyticsFilesDb extends DAL_BaseDb {
      * @param array $imageRow данные о файле
      */
     public function AddFile($fileRow) {
-        $fileRow['Order'] = $this->Order()->InsertRecord($fileRow['folder']);
+        $fileRow['Order'] = $this->Order($this->TableName, 'id', 'folder')->InsertRecord($fileRow['folder']);
         $this->insert($fileRow);
 
         return $this->db->GetLastId();
     }
 
-    /**
-     * Возвращает экземпляр класса OrderHelper
-     *
-     * @return Helpers_OrderHelper
-     */
-    private function Order() {
-        $orderHelper = new Helpers_OrderHelper();
-        $orderHelper->SetInfo($this->TableName, 'id', 'folder');
-
-        return $orderHelper;
-    }
 
     /**
      Перемещаем файлы
@@ -205,7 +194,7 @@ class DAL_AnalyticsFilesDb extends DAL_BaseDb {
         $toFolder = $this->db->Escape($toFolder);
         $fromFolder = $this->db->Escape($fromFolder);
 
-        // получаем 
+        // получаем
         $images = $this->GetFromFolder($fromFolder);
 
 //        if (!isset($images) || count($images) == 0)
@@ -227,14 +216,14 @@ class DAL_AnalyticsFilesDb extends DAL_BaseDb {
 if($img_file){
             Utility_FileUtility::MoveFile($img_file, $fromFolder, $toFolder, $img_file);}
         }
-        
+
 		$mydir = opendir($fromFolder);
 		while(false !== ($file = readdir($mydir))) {
 			if(!is_dir($file)&&is_file($file)&& $file != "." && $file != "..") {
 echo $file;
 				//chmod($fromFolder.$file, 0777);
-				
-				Utility_FileUtility::MoveFile($file, $fromFolder, $toFolder, $file);				
+
+				Utility_FileUtility::MoveFile($file, $fromFolder, $toFolder, $file);
 			}
 		}
 
@@ -247,7 +236,7 @@ echo $file;
 	 */
 	public function Up($Id)
 	{
-		$this->Order()->UpRecord($Id);
+		$this->Order($this->TableName, 'id', 'folder')->UpRecord($Id);
 	}
 
         /**
@@ -257,7 +246,7 @@ echo $file;
 	 */
 	public function Down($Id)
 	{
-		$this->Order()->DownRecord($Id);
+		$this->Order($this->TableName, 'id', 'folder')->DownRecord($Id);
 	}
 
         /**
@@ -279,7 +268,7 @@ echo $file;
 			@unlink($this_file);
 
 		// удаляем запись из таблицы
-		$this->Order()->DeleteRecord($id);
+		$this->Order($this->TableName, 'id', 'folder')->DeleteRecord($id);
 		$this->delete(array("id" => $id));
 	}
 

@@ -10,7 +10,8 @@
  */
 //include_once '/usr/home/web/www.riss.ru/www/new2/App_Code/Utility/SafetyUtility.php';
 
-class DAL_BaseDb {
+class DAL_BaseDb
+{
 
 	/**
 	 * Менеджер БД
@@ -19,35 +20,34 @@ class DAL_BaseDb {
 	 */
 	protected $db;
 	protected static $staticDb;
-	protected static $structure;
 	protected $TableName = null;
 
 	/**
-	  Возвращает данные о структуре таблицы в виде название колонки -> тип колонки
+	Возвращает данные о структуре таблицы в виде название колонки -> тип колонки
+	 * @return array
 	 */
-	protected function getStructure() {
-		$fields = array();
+	protected function getStructure()
+	{
+
 		$struct = array();
-		if (is_array(self::$structure)) {
-			return self::$structure;
-		} else {
-			$fields = $this->query("SHOW COLUMNS FROM  $this->TableName");
-			foreach ($fields as $field) {
-				$struct[$field['Field']] = $field['Type'];
-			}
-			if (count($struct) > 0) {
-				self::$structure=$struct;
-				return $struct;
-			} else {
-				trigger_error("Структура таблицы не определена");
-			}
+
+		$fields = $this->query("SHOW COLUMNS FROM  $this->TableName");
+		foreach ($fields as $field) {
+			$struct[$field['Field']] = $field['Type'];
 		}
+		if (count($struct) > 0) {
+			return $struct;
+		} else {
+			trigger_error("Структура таблицы не определена");
+		}
+
 	}
 
 	/**
-	  Возвращает ключи таблицы
+	Возвращает ключи таблицы
 	 */
-	protected function getKeys() {
+	protected function getKeys()
+	{
 		$fields = array();
 		$structure = array();
 		$fields = $this->query("SHOW COLUMNS FROM  $this->TableName");
@@ -64,9 +64,10 @@ class DAL_BaseDb {
 	}
 
 	/**
-	  Возвращает индексы таблицы
+	Возвращает индексы таблицы
 	 */
-	protected function getIndexes() {
+	protected function getIndexes()
+	{
 		$fields = array();
 		$structure = array();
 		$fields = $this->query("SHOW COLUMNS FROM  $this->TableName");
@@ -82,7 +83,8 @@ class DAL_BaseDb {
 		}
 	}
 
-	function __construct() {
+	function __construct()
+	{
 		// если уже есть объект менеджера БД
 		if (is_object($this->db) && $this->db instanceof DAL_DbManager)
 			return;
@@ -102,11 +104,12 @@ class DAL_BaseDb {
 	}
 
 	/**
-	  Осуществляет проверку данных на соответствие типу
-	  @param string $name название колонки
-	  @param mixed $value значение колонки
+	Осуществляет проверку данных на соответствие типу
+	@param string $name название колонки
+	@param mixed $value значение колонки
 	 */
-	private function checkData($name, &$value) {
+	private function checkData($name, &$value)
+	{
 		$structure = $this->getStructure();
 
 		if (!isset($structure[$name]))
@@ -125,7 +128,8 @@ class DAL_BaseDb {
 		}
 	}
 
-	protected function selectIn($array = array(), $order = null, $orderInv = false, $limit = null) {
+	protected function selectIn($array = array(), $order = null, $orderInv = false, $limit = null)
+	{
 		if (!isset($this->TableName))
 			trigger_error("Имя таблицы не указано");
 
@@ -151,13 +155,14 @@ class DAL_BaseDb {
 	}
 
 	/**
-	  Делает выборку из таблицы
+	Делает выборку из таблицы
 
-	  @param array $where Массив фильтров выборки
-	  @param string $order Название колонки по которой будут сортироваться записи
-	  @param bool $orderInv Направление сорировки — в обратном порядке
+	@param array $where Массив фильтров выборки
+	@param string $order Название колонки по которой будут сортироваться записи
+	@param bool $orderInv Направление сорировки — в обратном порядке
 	 */
-	protected function select($where = null, $order = null, $orderInv = false, $limit = null) {
+	protected function select($where = null, $order = null, $orderInv = false, $limit = null)
+	{
 		//Debug($where,false);
 		if (!isset($this->TableName))
 			trigger_error("Имя таблицы не указано");
@@ -194,9 +199,10 @@ class DAL_BaseDb {
 	}
 
 	/**
-	  Выберает первую из записей
+	Выберает первую из записей
 	 */
-	protected function selectFirst($where = null, $order = null, $orderInv = false) {
+	protected function selectFirst($where = null, $order = null, $orderInv = false)
+	{
 		$rows = $this->select($where, $order, $orderInv);
 
 		if (count($rows) > 0)
@@ -209,22 +215,23 @@ class DAL_BaseDb {
 	 *
 	 * выполнение произвольного запроса к бд
 	 * */
-	public function query($query = null) {
+	public function query($query = null)
+	{
 		//Debug($query,false);
 		return $this->db->ExecuteReader($query);
 	}
 
 	/**
-	  Делает постраничную выборку из таблицы
-
-	  @param array $where Массив фильтров выборки
-	  @param string $order Название колонки по которой будут сортироваться записи
-	  @param bool $orderInv Направление сорировки — в обратном порядке
-	  @param int $page номер страницы
-	  @param int $recordsOnPage количество записей на страницу
-	  @param int $count общее количество записей
+	 * Делает постраничную выборку из таблицы
+	 * @param $where
+	 * @param $order
+	 * @param string $order_dir
+	 * @param $page
+	 * @param $recordsInPage
+	 * @return #M#P#C\DAL_BaseDb.db.ExecuteReader|?
 	 */
-	protected function selectPage($where, $order, $orderInv, $page, $recordsInPage) {
+	protected function selectPage($where, $order, $order_dir = "DESC", $page = 1, $recordsInPage)
+	{
 		if (!isset($this->TableName))
 			trigger_error("Имя таблицы не указано");
 
@@ -249,22 +256,21 @@ class DAL_BaseDb {
 		}
 
 		if (isset($order) && isset($structure[$order]))
-			$query .= " ORDER BY `" . $order . "` " . ($orderInv ? "DESC" : "ASC");
+			$query .= " ORDER BY `" . $order . "` " . $order_dir;
 
-		//Debug($page*$recordsInPage,false);
-		$startRow = $recordsInPage * $page;
+		$startRow = $recordsInPage * ($page - 1);
 
 		$query .= " LIMIT " . intval($startRow) . ',' . intval($recordsInPage);
-		//Debug($query);
 		return $this->db->ExecuteReader($query);
 	}
 
 	/**
-	  Возвращает количество записей, удовлетворяющих выражению
+	Возвращает количество записей, удовлетворяющих выражению
 
-	  @param array $where ассоциативный массив фильтра данных
+	@param array $where ассоциативный массив фильтра данных
 	 */
-	protected function selectCount($where = array()) {
+	protected function selectCount($where = array())
+	{
 		$query = "SELECT COUNT(*) FROM `" . $this->TableName . "`";
 		if (isset($where)) {
 			$query .= " WHERE 1=1";
@@ -287,11 +293,12 @@ class DAL_BaseDb {
 	}
 
 	/**
-	  Обновляет запись в таблице
+	Обновляет запись в таблице
 
-	  @param array $newRow новая запись
+	@param array $newRow новая запись
 	 */
-	protected function update($newRow) {
+	protected function update($newRow)
+	{
 
 		// определяем ключи
 		$keys = $this->getKeys();
@@ -337,11 +344,12 @@ class DAL_BaseDb {
 	}
 
 	/**
-	  Осуществляет вставку строки в таблицу
+	Осуществляет вставку строки в таблицу
 
-	  @param array $row Строка таблицы
+	@param array $row Строка таблицы
 	 */
-	function insert($row) {
+	function insert($row)
+	{
 		if (!isset($this->TableName))
 			trigger_error("Имя таблицы не указано");
 		//Debug($row);
@@ -396,10 +404,11 @@ class DAL_BaseDb {
 	}
 
 	/**
-	  Удаляет запись из таблицы
-	  @param array $where Фильтр для записей
+	Удаляет запись из таблицы
+	@param array $where Фильтр для записей
 	 */
-	protected function delete($where) {
+	protected function delete($where)
+	{
 		if (!isset($this->TableName))
 			trigger_error("Имя таблицы не указано");
 
@@ -426,8 +435,26 @@ class DAL_BaseDb {
 	/**
 	 * Деструктор, закрывает соединение с БД
 	 */
-	function __destruct() {
+	function __destruct()
+	{
 		//$this->db->CloseConnection();
+	}
+
+	/**
+	 * Возвращает экземпляр класса OrderHelper
+	 *
+	 * @param $tableName
+	 * @param $idIndex
+	 * @param $parentIdIndex
+	 * @param string $thirdindex
+	 * @return Helpers_OrderHelper
+	 */
+	public function Order($tableName, $idIndex, $parentIdIndex, $thirdindex = null)
+	{
+		$orderHelper = new Helpers_OrderHelper();
+		$orderHelper->SetInfo($tableName, $idIndex, $parentIdIndex, $thirdindex);
+
+		return $orderHelper;
 	}
 
 }

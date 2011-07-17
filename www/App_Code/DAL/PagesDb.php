@@ -63,16 +63,6 @@ class DAL_PagesDb extends DAL_BaseDb {
     }
 
     /**
-     Помошник для управления порядком страниц
-     */
-    private function Order() {
-        $orderHelper = new Helpers_OrderHelper();
-        $orderHelper->SetInfo('pages', 'PageId', 'Parent', 'LanguageId');
-
-        return $orderHelper;
-    }
-
-    /**
      Возвращает список страниц
 
      @return array
@@ -169,7 +159,7 @@ class DAL_PagesDb extends DAL_BaseDb {
                 trigger_error("Некорректные параметры для добавления страницы");
         }
 
-        $pageRow['Order'] = $this->Order()->InsertRecord($pageRow['Parent']/*, $pageRow['LanguageId']*/);
+        $pageRow['Order'] = $this->Order($this->TableName,'PageId','Parent')->InsertRecord($pageRow['Parent']/*, $pageRow['LanguageId']*/);
         $this->insert($pageRow);
         return $this->db->GetLastId();
     }
@@ -180,7 +170,7 @@ class DAL_PagesDb extends DAL_BaseDb {
      @param int $pageId Идентификатор страницы
      */
     public function DeletePage($pageId) {
-        $this->Order()->DeleteRecord($pageId);
+        $this->Order($this->TableName,'PageId','Parent')->DeleteRecord($pageId);
         $pages = $this->select(array("Parent" => $pageId));
 
         $modulesDb = new DAL_ModulesDb();
@@ -196,11 +186,11 @@ class DAL_PagesDb extends DAL_BaseDb {
     }
 
     public function Up($pageId) {
-        $this->Order()->UpRecord($pageId);
+        $this->Order($this->TableName,'PageId','Parent')->UpRecord($pageId);
     }
 
     public function Down($pageId) {
-        $this->Order()->DownRecord($pageId);
+        $this->Order($this->TableName,'PageId','Parent')->DownRecord($pageId);
     }
 
     /**

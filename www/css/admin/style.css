@@ -709,12 +709,55 @@ body#login {
 
 .admin_table th a {
 	padding: 0 25px 0 0;
+	color:#555;
 }
 
 .admin_table th a.ASC {
 	background: url(/img/admin/ascending.png) right center no-repeat;
 }
+.admin_table col.ASC,.admin_table col.DESC {
+	background-color:#e9e9e9;
+}
 
 .admin_table th a.DESC {
 	background: url(/img/admin/descending.png) right center no-repeat;
 }
+.btnEdit{
+	border: none;
+	background: url(/img/admin/edit.png) no-repeat;
+	width:16px;
+	height:16px;
+	cursor:pointer;
+}
+.btnDel{
+	border: none;
+	background: url(/img/admin/del.png) no-repeat;
+	width:16px;
+	height:16px;
+	cursor:pointer;
+}
+.btnDown{
+	border: none;
+	background: url(/img/admin/down.png) no-repeat;
+	width:16px;
+	height:16px;
+	cursor:pointer;
+}
+.btnUp{
+	border: none;
+	background: url(/img/admin/up.png) no-repeat;
+	width:16px;
+	height:16px;
+	cursor:pointer;
+}
+.page_count{
+	margin:5px 10px;
+}
+.page_count a{
+	padding-left:10px;
+}
+.page_count span{
+	padding-left:10px;
+}
+
+

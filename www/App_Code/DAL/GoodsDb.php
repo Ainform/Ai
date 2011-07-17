@@ -157,7 +157,7 @@ class DAL_GoodsDb extends DAL_BaseDb {
      * @return array
      */
     public function GetFromSection($sectionId, $page=0, $count=10) {
-        return $this->selectPage(array("SectionId" => $sectionId), "Order", false, $page, $count);
+        return $this->selectPage(array("SectionId" => $sectionId), "Order", "ASC", $page, $count);
     }
 
     public function GetAllFromSectionAndSubsection($sectionId, $page=0, $count=10) {
@@ -168,7 +168,7 @@ class DAL_GoodsDb extends DAL_BaseDb {
         $goods = array();
         foreach ($tree as $branch) {
             //wtf($goods,false);
-            $goods = array_merge($goods, $this->selectPage(array("SectionId" => $branch['SectionId']), "Order", false, $page, $count));
+            $goods = array_merge($goods, $this->selectPage(array("SectionId" => $branch['SectionId']), "Order", "ASC", $page, $count));
         }
         return $goods;
     }
@@ -184,7 +184,7 @@ class DAL_GoodsDb extends DAL_BaseDb {
      * @return array
      */
     public function GetFromSectionByManufacturer($sectionId, $manufacturerId, $page=0, $count=10) {
-        return $this->selectPage(array("SectionId" => $sectionId, "ManufacturerId" => $manufacturerId), "Order", false, $page, $count);
+        return $this->selectPage(array("SectionId" => $sectionId, "ManufacturerId" => $manufacturerId), "Order", "ASC", $page, $count);
     }
 
     public function GetFromSectionSort($sectionId, $order, $superorder) {
@@ -361,17 +361,6 @@ class DAL_GoodsDb extends DAL_BaseDb {
         $sectionsDb->UpdateSection($section);
     }
 
-    /**
-     * Возвращает экземпляр класса OrderHelper
-     *
-     * @return Helpers_OrderHelper
-     */
-    private function Order() {
-        $orderHelper = new Helpers_OrderHelper();
-        $orderHelper->SetInfo('goods', 'GoodId', 'SectionId');
-
-        return $orderHelper;
-    }
 
     /**
      * Поднимает товар
@@ -379,11 +368,11 @@ class DAL_GoodsDb extends DAL_BaseDb {
      * @param int $goodId идентификатор товара
      */
     public function Up($goodId) {
-        $this->Order()->UpRecord($goodId);
+        $this->Order($this->TableName, 'GoodId', 'SectionId')->UpRecord($goodId);
     }
 
     public function Down($goodId) {
-        $this->Order()->DownRecord($goodId);
+        $this->Order($this->TableName, 'GoodId', 'SectionId')->DownRecord($goodId);
     }
 
     /**

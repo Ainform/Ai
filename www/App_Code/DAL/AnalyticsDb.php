@@ -16,7 +16,7 @@ class DAL_AnalyticsDb extends DAL_BaseDb {
 
     /**
      Возвращает данные о структуре таблицы в виде название колонки -> тип колонки
-		
+
      @return array структура таблицы
      */
     protected function getStructure() {
@@ -30,7 +30,7 @@ class DAL_AnalyticsDb extends DAL_BaseDb {
 
     /**
      Возвращает первичные ключи таблицы
-		
+
      @return array ключи таблицы
      */
     protected function getKeys() {
@@ -88,7 +88,7 @@ class DAL_AnalyticsDb extends DAL_BaseDb {
      * @return array
      */
     public function GetAnalyticsPage($moduleId, $page, $recordsOnPage) {
-        return $this->selectPage(array("moduleid" => $moduleId),"date",true,$page,$recordsOnPage);
+        return $this->selectPage(array("moduleid" => $moduleId),"date","DESC",$page,$recordsOnPage);
     }
 
 

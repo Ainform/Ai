@@ -125,7 +125,7 @@ class DAL_DbManager {
 	 * @return array
 	 */
 	function ExecuteReader($query) {
-
+//echo $query;
 		if (!is_resource($this->connection))
 			Helpers_LogHelper::AddLogEntry('Попытка выполнения запроса без подключения к БД!');
 

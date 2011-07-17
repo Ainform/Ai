@@ -59,12 +59,12 @@ class DAL_ManufacturersDb extends DAL_BaseDb {
 
 		$this->update($row);
   }
-  
+
   public function GetAll()
   {
 	return $this->select(array(), "Name", false);
   }
-  
+
 	 /**
 	* Возвращает запрошенную страницу
 	*
@@ -74,7 +74,7 @@ class DAL_ManufacturersDb extends DAL_BaseDb {
 	* @return array
 	*/
   public function GetPage($page, $recordsOnPage) {
-	 $rows =  $this->selectPage(array(),"date",true,$page,$recordsOnPage);
+	 $rows =  $this->selectPage(array(),"date",null,$page,$recordsOnPage);
 
 	 foreach($rows as &$row) {
 		$row['Url'] = "/?manufacturerId=".$row["ManufacturerId"];
@@ -102,7 +102,7 @@ class DAL_ManufacturersDb extends DAL_BaseDb {
 		  return "";
 	 }
   }
-  
+
 	 public function GetCodeById($Id) {
 	 $result = $this->select(array("ManufacturerId" => $Id));
 	 if($result){

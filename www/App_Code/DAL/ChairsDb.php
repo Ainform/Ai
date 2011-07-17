@@ -2,7 +2,7 @@
 /**
  * DAL_ChairsDb class
  * Класс для работы с кафедрами в БД
- * 
+ *
  * @author Informix
  * @version 0.q
  * @copyright (c) by Informix
@@ -13,10 +13,10 @@ class DAL_ChairsDb extends DAL_BaseDb{
 		@var string $TableName Название таблицы
 	*/
 	protected $TableName = "Chairs";
-	
+
 	/**
 	Возвращает данные о структуре таблицы в виде название колонки -> тип колонки
-		
+
 	@return array структура таблицы
 	*/
 	protected function getStructure()
@@ -30,17 +30,17 @@ class DAL_ChairsDb extends DAL_BaseDb{
 				"Body" => "string",
 		);
 	}
-	
+
 	/**
 	Возвращает первичные ключи таблицы
-		
+
 		@return array ключи таблицы
 	*/
 	protected function getKeys()
 	{
 		return array("ChairId");
 	}
-	
+
 	/**
 		@return array автоинкрементные индексы таблицы
 	*/
@@ -57,48 +57,48 @@ class DAL_ChairsDb extends DAL_BaseDb{
 	{
 		parent::__construct();
 	}
-	
-	
+
+
 	/**
 	Возвращает папку для картинок новости
 	*/
 	public static function GetImageFolder($ChairtId = null)
 	{
 		$folder = "chair/";
-		
+
 		if (isset($ChairId))
 			$folder .= $ChairId."/";
-			
+
 		return $folder;
 	}
-	
+
 	/**
-	 * Возвращает список 
+	 * Возвращает список
 	 * @param int $moduleId Индификатор модуля
 	 * @param int $page номер страницы для отображения
 	 * @param int $recordsOnPage количество записей на страницу
-	 * 
+	 *
 	 * @return array
 	 * */
 	public function GetChairPage($moduleId, $page, $recordsOnPage){
-		return $this->selectPage(array("ModuleId" => $moduleId), 
-								"ChairId", 
-								true, 
-								$page, 
+		return $this->selectPage(array("ModuleId" => $moduleId),
+								"ChairId",
+								"DESC",
+								$page,
 								$recordsOnPage);
 	}
-	
-	
+
+
 	/**
 	 * Возвращает html для пейджинга на основе данных
-	 * @param int $moduleId ИД Модуля 
+	 * @param int $moduleId ИД Модуля
 	 * @param int $page номер страницы
 	 * @param int $recordsOnPage количество записей на страницу
 	 * @return string
 	 * */
 	public function GetPager($moduleId, $page, $recordsOnPage){
 		//Debug($moduleId);
-		
+
 		$allNews = $this->GetCountChair($moduleId); // количество всех новостей
 		$p = ceil($allNews/$recordsOnPage); // количество страниц
 		$pager = "<div class='pager'>";
@@ -114,7 +114,7 @@ class DAL_ChairsDb extends DAL_BaseDb{
 		}
 		return $pager."</div>";
 	}
-	
+
 	/**
 	Возвращает общее количество записей для текущего модуля
 	@param int $moduleId идентификатор модуля
@@ -123,7 +123,7 @@ class DAL_ChairsDb extends DAL_BaseDb{
 	{
 		return $this->selectCount(array("ModuleId" => $moduleId));
 	}
-	
+
 	/**
 	 * Обновляет Запись о кафедре
 	 *
@@ -133,7 +133,7 @@ class DAL_ChairsDb extends DAL_BaseDb{
 	{
 		$this->update($saveRow);
 	}
-	
+
 	/**
 	 * Добавляет Запись о кафедре
 	 *
@@ -144,7 +144,7 @@ class DAL_ChairsDb extends DAL_BaseDb{
 		$this->insert($SaveRow);
 		return $this->db->GetLastId();
 	}
-	
+
 	/**
 	 * Удаляет Запись о кафедре
 	 *
@@ -160,7 +160,7 @@ class DAL_ChairsDb extends DAL_BaseDb{
 		// удаляем файлы из текста
 		$imageUtility->SetDirectory('Chair'.$ChairId);
 		$imageUtility->DeleteFiles($Chair[0]['Body']);
-		
+
 		$imagesDb = new DAL_ImagesDb();
 			$imagesDb->DeleteFolder(self::GetImageFolder($ChairId));
 		unset($imagesDb);
@@ -175,23 +175,23 @@ class DAL_ChairsDb extends DAL_BaseDb{
 	{
 		return $this->select(array("ChairId" => $ChairId));
 	}
-	
-	
-	
+
+
+
 	public function GetAllChairs($moduleId = null){
 		if(!$moduleId){
 			return $this->select(array("ModuleId"=>$moduleId));
 		}else{
 			return $this->select();
 		}
-		
+
 	}
-	
+
 	public function GetFacultyChairs($id){
 		return $this->select(array("isFaculty"=>$id));
 	}
-	
-	
+
+
 	public function GetUrlFrontSite(){
 		//$module = "Chairs";
 		//$pageModule = $this->query("select * from PageModules where ModuleType = '$module'");
@@ -200,7 +200,7 @@ class DAL_ChairsDb extends DAL_BaseDb{
 		return "/faculty/chairs/";
 		//return "/".$u[0]["Alias"]."/";
 	}
-	
-	
+
+
 }
 ?>

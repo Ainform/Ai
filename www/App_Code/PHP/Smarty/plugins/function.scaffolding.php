@@ -65,9 +65,17 @@ function smarty_function_scaffolding($params, &$smarty)
 			$sort_dir = "DESC";
 		}
 
-		return $url_array['path'] . "?" . http_build_query(array("sort" => $value, "sort_dir" => $sort_dir));
+		$temp_array = $_GET;
+		$temp_array['sort'] = $value;
+		$temp_array['sort_dir'] = $sort_dir;
+
+		return $url_array['path'] . "?" . http_build_query($temp_array);
 	}
 
+	/**
+	 * @param $value
+	 * @return string
+	 */
 	function sort_pic($value)
 	{
 		$url_array = parse_url($_SERVER['REQUEST_URI']);
@@ -83,7 +91,27 @@ function smarty_function_scaffolding($params, &$smarty)
 		return $sort_pic;
 	}
 
+	function count_prepare($count)
+	{
+		//количество материалов на странице
+		$url_array = parse_url($_SERVER['REQUEST_URI']);
+		$temp_array = $_GET;
+		unset($temp_array['page']);
+		$temp_array['count'] = $count;
+		if (isset($_GET['count']) && $_GET['count'] == $count) {
+			$path = "<span>".$count."</span>";
+		} else {
+			$path = "<a href='".$url_array['path'] . "?" . http_build_query($temp_array)."'>".$count."</a>";
+		}
+		return $path;
+	}
+
 	if (isset($list['headers'])) {
+		foreach ($list['headers'] as $item => $value) {
+			if (!in_array($item, $list['exceptions'])) {
+				$html .= "<col class='" . sort_pic($value) . "'/>";
+			}
+		}
 		$html .= '<thead><tr>';
 		foreach ($list['headers'] as $item => $value) {
 			if (!in_array($item, $list['exceptions'])) {
@@ -95,6 +123,7 @@ function smarty_function_scaffolding($params, &$smarty)
 
 			}
 		}
+		$html .= "<th colspan='4'>Функции</th>";
 		$html .= '</tr></thead>';
 	}
 
@@ -114,29 +143,19 @@ function smarty_function_scaffolding($params, &$smarty)
 				}
 
 			}
-
+			$html .= '<td><input type="submit" name="handlerBtnDown:' . $row['id'] . '" class="btnDown" title="Опустить" value="" /></td>
+					<td><input type="submit" name="handlerBtnUp:' . $row['id'] . '" class="btnUp" title="Поднять" value="" /></td>
+					<td><input type="submit" name="handlerBtnEdit:' . $row['id'] . '" class="btnEdit" title="Изменить" value="" /></td>
+					<td><input type="submit" name="handlerBtnDel:' . $row['id'] . '" class="btnDel" title="Удалить" value="" onclick="return confirm(\'Вы уверены?\');" /></td>';
 			$html .= '</tr>';
 		}
 		$html .= '</tbody>';
 	}
 
-	if (isset($list['headers'])) {
-		$html .= '<thead><tr>';
-		foreach ($list['headers'] as $item => $value) {
-			if (!in_array($item, $list['exceptions'])) {
-				if (isset($list['titles'][$item])) {
-					$html .= "<th><a class='" . sort_pic($value) . "' href='" . sort_prepare($value) . "'>" . $list['titles'][$item] . "</a></th>";
-				} else {
-					$html .= "<th><a class='" . sort_pic($value) . "' href='" . sort_prepare($value) . "'>" . $value . "</a></th>";
-				}
-
-			}
-		}
-		$html .= '</tr></thead>';
-	}
-
-
 	$html .= '</table>';
+
+
+	$html .= '<div class="page_count">Показывать по:' . count_prepare(5) . count_prepare(10) . count_prepare(20) . count_prepare(50) . count_prepare(100) . '</div>';
 	$html .= $list['pager'];
 	return $html;
 }

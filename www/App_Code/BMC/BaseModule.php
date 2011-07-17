@@ -14,262 +14,267 @@
  * @copyright (c) by VisualDesign
  */
 
-class BMC_BaseModule {
-    /**
-     * Хлебные крошки
-     *
-     * @var string
-     */
-    public $breadCrumbs;
+class BMC_BaseModule
+{
+	/**
+	 * Хлебные крошки
+	 *
+	 * @var string
+	 */
+	public $breadCrumbs;
 
-    /**
-     * Заголовок страницы
-     *
-     * @var string
-     */
-    public $header;
-    public $Title;
-    public $PageTitle;
-    public $curPage;
-    public $pageVar;
+	/**
+	 * Заголовок страницы
+	 *
+	 * @var string
+	 */
+	public $header;
+	public $Title;
+	public $PageTitle;
+	public $curPage;
+	public $pageVar;
 
-    /**
-     * Мета теги страницы
-     *
-     * @var string
-     */
-    public $metaTags;
+	/**
+	 * Мета теги страницы
+	 *
+	 * @var string
+	 */
+	public $metaTags;
 
-    /**
-     Тип модуля
+	/**
+	Тип модуля
 
-     @var string
-     */
-    public $moduleType;
+	@var string
+	 */
+	public $moduleType;
 
-    /**
-     Путь до шаблона страницы
+	/**
+	Путь до шаблона страницы
 
-     @var string
-     */
-    public $template;
+	@var string
+	 */
+	public $template;
 
-    /**
-     Путь до папки
+	/**
+	Путь до папки
 
-     @var string
-     */
-    public $folder;
+	@var string
+	 */
+	public $folder;
 
-    /**
-     Url страницы с модулем
+	/**
+	Url страницы с модулем
 
-     @var string
-     */
-    public $Url;
+	@var string
+	 */
+	public $Url;
 
-    /**
-     Инициализируем данные модуля или берем их из POST запроса?
+	/**
+	Инициализируем данные модуля или берем их из POST запроса?
 
-     @var bool
-     */
-    public $isPostBack = false;
+	@var bool
+	 */
+	public $isPostBack = false;
 
-    /**
-     Массив данных страницы
+	/**
+	Массив данных страницы
 
-     @var array
-     */
-    public $data = array();
+	@var array
+	 */
+	public $data = array();
 
-    /**
-     Идентификатор модуля
+	/**
+	Идентификатор модуля
 
-     @var int
-     */
-    public $moduleId;
+	@var int
+	 */
+	public $moduleId;
 
-    /**
-     Название CSS класса модуля
+	/**
+	 * Количество материалов на страницу
+	 */
+	public $RecordsOnPage;
 
-     @var string
-     */
-    public $cssClass = "module";
+	/**
+	Название CSS класса модуля
 
-    /**
-     * Разрешение на кеширование
-     *
-     * @var bool
-     */
-    public $propertyAllowCache = false;
+	@var string
+	 */
+	public $cssClass = "module";
 
-    /**
-     * Загрузка данных модуля
-     *
-     * @return void
-     */
-    public function DataBind() {
-    }
+	/**
+	 * Разрешение на кеширование
+	 *
+	 * @var bool
+	 */
+	public $propertyAllowCache = false;
 
-    /**
-     Генерирует сайтмап для модуля
-     */
-    public function GenerateSiteMap() {
-        return "";
-    }
+	/**
+	 * Загрузка данных модуля
+	 *
+	 * @return void
+	 */
+	public function DataBind()
+	{
+	}
 
-    /**
-     Событие при добавлении модуля к странице
-     */
-    public function OnModuleAdd() {
-    }
+	/**
+	Генерирует сайтмап для модуля
+	 */
+	public function GenerateSiteMap()
+	{
+		return "";
+	}
 
-    /**
-     Событие при удалении модуля
-     */
-    public function OnModuleDelete() {
-    }
+	/**
+	Событие при добавлении модуля к странице
+	 */
+	public function OnModuleAdd()
+	{
+	}
 
-    function getTemplatePath() {
-        return $this->folder.$this->template;
-    }
+	/**
+	Событие при удалении модуля
+	 */
+	public function OnModuleDelete()
+	{
+	}
 
-    /**
-     Возвращает виртуальный (ЧПУ) путь до модуля
-     */
-    public function GetVirtualPath() {
-        return dirname($this->Url).'/'.basename($this->Url, '.php').'/';
-    }
+	function getTemplatePath()
+	{
+		return $this->folder . $this->template;
+	}
 
-    public function __construct($moduleId) {
-        $this->moduleId = $moduleId;
-        $this->pageVar  = "pageVar$moduleId";
-        $this->curPage = intval(Request($this->pageVar, 0));
-    }
+	/**
+	Возвращает виртуальный (ЧПУ) путь до модуля
+	 * @return string
+	 */
+	public function GetVirtualPath()
+	{
+		return dirname($this->Url) . '/' . basename($this->Url, '.php') ;
+	}
 
-    public function getData() {
-        return new ModuleData($this->data);
-    }
+	public function __construct($moduleId)
+	{
+		$this->moduleId = $moduleId;
+		//TODO если несколько педжингов на странице, то нужно передевать что-то типа page.$this->ModuleId
+		$this->pageVar = "page";
+		$this->RecordsOnPage = isset($_REQUEST['count'])?intval($_REQUEST['count']):10;
+		$this->curPage = isset($_REQUEST[$this->pageVar])?intval($_REQUEST[$this->pageVar]):0;
+	}
 
-    // распределение файлов по их типу
-    public function DistibuteFiles($filelist, $entityspec) {
-        $videolist = null;
-        $soundlist = null;
-        $outFiles = null;
+	public function getData()
+	{
+		return new ModuleData($this->data);
+	}
 
-        $playlist = "<?xml version='1.0' encoding='UTF-8'?><xml>";
+	// распределение файлов по их типу
+	public function DistibuteFiles($filelist, $entityspec)
+	{
+		$videolist = null;
+		$soundlist = null;
+		$outFiles = null;
 
-        foreach ($filelist as &$file) {
-            $file['Path'] = DAL_AnalyticsFilesDb::GetfilePath($file);
+		$playlist = "<?xml version='1.0' encoding='UTF-8'?><xml>";
 
-            $filename = strtolower($file['filename']);
+		foreach ($filelist as &$file) {
+			$file['Path'] = DAL_AnalyticsFilesDb::GetfilePath($file);
 
-            if (strpos($filename, ".flv") !== false || strpos($filename, ".swf") !== false)
-                $videolist[] = SiteUrl.$file['Path'].$file['folder'].$file['filename'];
-            else
-            if (strpos($filename, ".mp3") !== false) {
-                $soundlist[] = array("Title" => $file["title"], "Path" => SiteUrl.$file['Path'].$file['folder'].$file['filename']);
-                $playlist .= "
+			$filename = strtolower($file['filename']);
+
+			if (strpos($filename, ".flv") !== false || strpos($filename, ".swf") !== false)
+				$videolist[] = SiteUrl . $file['Path'] . $file['folder'] . $file['filename'];
+			else
+				if (strpos($filename, ".mp3") !== false) {
+					$soundlist[] = array("Title" => $file["title"], "Path" => SiteUrl . $file['Path'] . $file['folder'] . $file['filename']);
+					$playlist .= "
 <track>
-	<path>".SiteUrl.$file['Path'].$file['folder'].$file['filename']."</path>
-	<title>".$file["title"]."</title>
+	<path>" . SiteUrl . $file['Path'] . $file['folder'] . $file['filename'] . "</path>
+	<title>" . $file["title"] . "</title>
 </track>";
-            }
-            else
-                $outFiles[] = $file;
-        }
+				}
+				else
+					$outFiles[] = $file;
+		}
 
-        $this->data['Files'] = $outFiles;
-        $this->data['VideoList'] = $videolist;
-        $this->data['SoundList'] = $soundlist;
-        $this->data['PlayList'] = SiteUrl."playlists/playlist$entityspec.xml";
-        $this->data['Mp3PlayerHeight'] = count($soundlist) >= 10 ? 337 : (100 + count($soundlist) * 20);
+		$this->data['Files'] = $outFiles;
+		$this->data['VideoList'] = $videolist;
+		$this->data['SoundList'] = $soundlist;
+		$this->data['PlayList'] = SiteUrl . "playlists/playlist$entityspec.xml";
+		$this->data['Mp3PlayerHeight'] = count($soundlist) >= 10 ? 337 : (100 + count($soundlist) * 20);
 
-        if (count($soundlist)) {
-            //echo "playlists/playlist$entityspec.xml";
-            file_put_contents("playlists/playlist$entityspec.xml", $playlist);
-        }
-    }
+		if (count($soundlist)) {
+			//echo "playlists/playlist$entityspec.xml";
+			file_put_contents("playlists/playlist$entityspec.xml", $playlist);
+		}
+	}
 
-    public function AddOrderToRows($rows, $beginIndex) {
-        foreach ($rows as &$row) {
-            $row["Numer"] = ++$beginIndex;
-        }
-    }
 
-    /*
-     * Задаёт разбивку на страницы
-     *
-     * @pagecount Количество страниц
-     * @pageVar Имя переменной с текущей страницей
-     * @postfix Любая дополнительная информация
-     * TODO сделать несколько видов пейджинга с возможностью выбрать нужный
-     */
+	/*
+* Задаёт разбивку на страницы
+*
+* @pagecount Количество страниц
+* @pageVar Имя переменной с текущей страницей
+* @postfix Любая дополнительная информация
+* TODO сделать несколько видов пейджинга с возможностью выбрать нужный
+*/
 
-    public function SetPager($pageCount, $pageVar, $postfix="") {
-        $pager = "<div class='pager'><span class='per'>Страница: </span>";
+	public function SetPager($pageCount, $url, $pagecur = 1)
+	{
 
-        $countPagingNums = 11;
+			$this->data["Pager"] = "";
+			$this->data["Pager"] .= '<link rel="stylesheet" type="text/css" href="/js/paginator3000/paginator3000.css" />
+	<script type="text/javascript" src="/js/paginator3000/paginator3000.js"></script>';
+			$this->data["Pager"] .= '<div class="paginator" id="paginator"></div>
+						<div class="paginator_pages">' . $pageCount . " " . declension($pageCount, array("страница", "страницы", "страниц")) . '</div>
+						<script type="text/javascript">
+						pag1 = new Paginator(\'paginator\', ' . $pageCount . ',10, ' . $pagecur . ',"'. $url.'");
+						</script>';
+		}
 
-        if ($pageCount > 1) {// если больше одной страницы
-            if(($this->curPage)>5) {//показываем текущую страницу и по 5 слева и справа, т.е. плавающая область по 10 страниц
-                for($i = $this->curPage - 5;$i < $this->curPage + 5;$i++) {
-                    if (($pageCount) > $i && $i != -1 && $i>-1) {
-                        if($this->curPage == $i) {// выделение страниц
-                            $pager .= "<span>".($i+1).($pageCount != $i + 1 ? ", " : "")."</span>";
-                        }
-                        else {
-                            $url = $this->GetVirtualPath();
-                            $pager .= "<a href='?".$pageVar."=".$i."$postfix'>".($i + 1)."</a>".($pageCount != $i + 1 ? ", " : "");
-                        }
-                    }
-                }
-            }else {
-                for($i = 0;$i < 10;$i++) {
-                    if (($pageCount) > $i && $i != -1 && $i>-1) {
-                        if($this->curPage == $i) {// выделение страниц
-                            $pager .= "<span>".($i+1).($pageCount != $i + 1 ? ", " : "")."</span>";
-                        }
-                        else {
-                            $url = $this->GetVirtualPath();
-                            $pager .= "<a href='?".$pageVar."=".$i."$postfix'>".($i + 1)."</a>".($pageCount != $i + 1 ? ", " : "");
-                        }
-                    }
-                }
-            }
-            if ($pageCount > $this->curPage + $countPagingNums - 1)
-                $pager .= "<a href='?".$pageVar."=".(($pageCount % $countPagingNums) != 0 ? $this->curPage + ($pageCount % $countPagingNums) : $this->curPage + $countPagingNums - 1)."#news'>...</a>";
-        }
+	public function getRecordsOnPage()
+	{
+		return $this->recordsOnPage;
+	}
 
-        $this->data["Pager"] = $pageCount == 1 || $pageCount == 0 ? "" : $pager."</div>";
-    }
+	public function setRecordsOnPage($recordsOnPage)
+	{
+		$this->recordsOnPage = $recordsOnPage;
+	}
+
 }
 
-class ModuleData implements ArrayAccess {
-    private $data;
+class ModuleData implements ArrayAccess
+{
+	private $data;
 
-    function __construct($array) {
-        $this->data = $array;
-    }
+	function __construct($array)
+	{
+		$this->data = $array;
+	}
 
-    public function offsetExists($offset) {
-        return isset($this->data[$offset]);
-    }
+	public function offsetExists($offset)
+	{
+		return isset($this->data[$offset]);
+	}
 
-    public function offsetGet($offset) {
-        if (isset($this->data[$offset]))
-            return $this->data[$offset];
+	public function offsetGet($offset)
+	{
+		if (isset($this->data[$offset]))
+			return $this->data[$offset];
 
-        return null;
-    }
+		return null;
+	}
 
-    public function offsetSet($offset, $value) {
-        $this->data[$offset] = $value;
-    }
+	public function offsetSet($offset, $value)
+	{
+		$this->data[$offset] = $value;
+	}
 
-    public function offsetUnset($offset) {
-        unset($this->data[$offset]);
-    }
+	public function offsetUnset($offset)
+	{
+		unset($this->data[$offset]);
+	}
 }
 
 ?>

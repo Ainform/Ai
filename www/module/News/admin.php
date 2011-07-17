@@ -1,23 +1,16 @@
 <?php
-
 /**
- * text_file_imageEdit class
- * модуль с текстовыми данными, возможностью добавить файлы и картинки
  *
- * @copyright (c) by VisualDesign
+ * @copyright (c) by Ainform
  *
  */
 class NewsModuleEdit extends BMC_BaseModule
 {
 	/**
-	 * Количество новостей на страницу
-	 */
-	const RecordsOnPage = 10;
-
-	/**
 	 * Конструктор, задает параметры
 	 *
-	 * @return void
+	 * @param $moduleId
+	 * @return \NewsModuleEdit
 	 */
 	function __construct($moduleId)
 	{
@@ -45,18 +38,14 @@ class NewsModuleEdit extends BMC_BaseModule
 	function DataBind()
 	{
 
-		//Debug("test");
 		$this->Model = new DAL_NewsDb;
-		// Debug("test");
-		$this->curPage = Request('pageNum', 0);
-		//Debug("test");
+		$this->curPage = Request('page', 1);
 		$action = CharOnly(Request("act", "List"));
-		// Debug("test");
+
 		if ($action == "List") {
-			//Debug("test");
 			$this->Lister();
 		}
-		//Debug("test");
+
 		// если указан идентификатор аналитики, то грузим саму аналитику, иначе список
 		$newsId = Request('NewsId');
 
@@ -97,7 +86,7 @@ class NewsModuleEdit extends BMC_BaseModule
 		$this->data['date'] = date("d.m.Y", time());
 		$this->data['ModuleId'] = $this->moduleId;
 
-		$this->template = "newsEdit.tpl";
+		$this->template = "Edit.tpl";
 
 		BMC_SiteMap::Update();
 	}
@@ -109,33 +98,23 @@ class NewsModuleEdit extends BMC_BaseModule
 	{
 
 		$NewsDb = new DAL_NewsDb();
-		$rows = $NewsDb->GetPage($this->moduleId, $this->curPage, self::RecordsOnPage);
+		$rows = $NewsDb->GetPage(array("moduleid" => $this->moduleId), @$_REQUEST['sort'], @$_REQUEST['sort_dir'], $this->curPage, $this->RecordsOnPage);
 
 		if (0 == count($rows))
 			return;
 
 		$rows['data'] = $rows;
 
+		unset($_GET['page']);
+		$path = $this->GetVirtualPath() . ".php?" . http_build_query($_GET) . "&page=";
+
 		$allNews = $NewsDb->GetCount($this->moduleId); // количество всех новостей
+		$p = ceil($allNews / $this->RecordsOnPage); // количество страниц
+		$this->SetPager($p, $path, $this->curPage);
 
 		unset($NewsDb);
-		$p = ceil($allNews / self::RecordsOnPage); // количество страниц
-		$pager = "<div class='pagination'>";
-		if ($p > 1) { // если больше одной страницы
-			for ($i = 0; $i < $p; $i++) {
-				if ($this->curPage == $i) { // выделение страниц
-					$pager .= "<a href='#' class='number current'>" . ($i + 1) . "</a>";
-				} else {
-					$url = $this->GetVirtualPath();
-					$pager .= "<a href='?pageNum=" . $i . "' class='number'>" . ($i + 1) . "</a>";
-				}
-			}
 
-		}
-		$rows["pager"] = $pager . "</div>";
-
-		$this->AddOrderToRows($rows, $this->curPage * self::RecordsOnPage);
-
+		$rows["pager"] = $this->data['Pager'];
 
 		foreach ($rows[0] as $key => $value) {
 			$rows['headers'][$key] = $key;
@@ -144,8 +123,8 @@ class NewsModuleEdit extends BMC_BaseModule
 		foreach ($rows as $id => $value) {
 			$rows['links'][$id] = @$value['Url'];
 		}
-		$rows['titles'] = array("title" => "Заголовок", "date" => "Дата", "onfront" => "На главной");
-		$rows['exceptions'] = array("text", "anons", "moduleid", "Url", "order");
+		$rows['titles'] = array("title" => "Заголовок", "date" => "Дата", "Order" => "п/п");
+		$rows['exceptions'] = array("text", "anons", "moduleid", "Url", "onfront");
 		$rows['types'] = array("date" => "date", "onfront" => "bool", "title" => "link");
 		$this->data['NewsList'] = $rows;
 	}
@@ -154,7 +133,7 @@ class NewsModuleEdit extends BMC_BaseModule
 	 * @param $newsId
 	 * @return
 	 */
-	public function BindNews($newsId)
+	public function handlerBtnEdit($newsId)
 	{
 		$newsDb = new DAL_NewsDb();
 		$news = $newsDb->GetOne($newsId);
@@ -184,7 +163,7 @@ class NewsModuleEdit extends BMC_BaseModule
 		$this->data['ImagesFolder'] = DAL_NewsDb::GetFolder($newsId);
 		$this->data['selectOnFront'] = $news['onfront'];
 
-		$this->template = "newsEdit.tpl";
+		$this->template = "Edit.tpl";
 	}
 
 	function handlerBtnNewsSave()
@@ -316,6 +295,24 @@ class NewsModuleEdit extends BMC_BaseModule
 		unset($newsDb);
 
 		BMC_SiteMap::Update();
+
+		$this->BindNewsList();
+	}
+
+	function handlerBtnUp($id)
+	{
+		$newsDb = new DAL_NewsDb();
+		$newsDb->Up($id);
+		unset($newsDb);
+
+		$this->BindNewsList();
+	}
+
+	function handlerBtnDown($id)
+	{
+		$newsDb = new DAL_NewsDb();
+		$newsDb->Down($id);
+		unset($newsDb);
 
 		$this->BindNewsList();
 	}

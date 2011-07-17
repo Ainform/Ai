@@ -3,7 +3,7 @@
 /**
  * DAL_PersonalsDb class
  * Класс для работы с лицензиями в БД
- * 
+ *
  * @author Frame
  * @version 1.0.1
  * @copyright (c) by VisualDesign
@@ -15,10 +15,10 @@ class DAL_PersonalsDb extends DAL_BaseDb
 		@var string $TableName Название таблицы
 	*/
 	protected $TableName = "personals";
-	
+
 	/**
 		Возвращает данные о структуре таблицы в виде название колонки -> тип колонки
-		
+
 		@return array структура таблицы
 	*/
 	protected function getStructure()
@@ -32,17 +32,17 @@ class DAL_PersonalsDb extends DAL_BaseDb
                                 "Position" => "string"
 				);
 	}
-	
+
 	/**
 		Возвращает первичные ключи таблицы
-		
+
 		@return array ключи таблицы
 	*/
 	protected function getKeys()
 	{
 		return array("PersonalsId");
 	}
-	
+
 	/**
 		@return array автоинкрементные индексы таблицы
 	*/
@@ -79,10 +79,10 @@ class DAL_PersonalsDb extends DAL_BaseDb
 	public static function GetImageFolder($personalsId = null)
 	{
 		$folder = "personals/";
-		
+
 		if (isset($personalsId))
 			$folder .= $personalsId."/";
-			
+
 		return $folder;
 	}
 
@@ -101,7 +101,7 @@ class DAL_PersonalsDb extends DAL_BaseDb
 		// удаляем файлы из текста
 		//$imageUtility->SetDirectory('personals'.$personalsId);
 		//$imageUtility->DeleteFiles($personals['Text']);
-		
+
 		$imagesDb = new DAL_ImagesDb();
 			$imagesDb->DeleteFolder(self::GetImageFolder($personalsId));
 		unset($imagesDb);
@@ -115,7 +115,7 @@ class DAL_PersonalsDb extends DAL_BaseDb
 	public function DeleteAllPersonalss($moduleId)
 	{
 		$personalsList = $this->GetAllPersonalss($moduleId);
-		
+
 		foreach ($personalsList as $personals)
 			$this->DeletePersonals($personals['PersonalsId']);
 	}
@@ -142,12 +142,12 @@ class DAL_PersonalsDb extends DAL_BaseDb
 	 */
 	public function GetPersonalsPage($moduleId, $page, $recordsOnPage)
 	{
-		return $this->selectPage(array("ModuleId" => $moduleId),"Order",false,$page,$recordsOnPage);
+		return $this->selectPage(array("ModuleId" => $moduleId),"Order","ASC",$page,$recordsOnPage);
 	}
-	
+
 	/**
 		Возвращает общее количество лицензий для текущего модуля
-	
+
 		@param int $moduleId идентификатор модуля
 	*/
 	public function GetCountPersonals($moduleId)
@@ -165,7 +165,7 @@ class DAL_PersonalsDb extends DAL_BaseDb
 		//Debug($newsRow);
                 $personalsRow['Order'] = $this->Order()->InsertRecord($personalsRow['ModuleId']);
 		$this->insert($personalsRow);
-		
+
 		return $this->db->GetLastId();
 	}
 

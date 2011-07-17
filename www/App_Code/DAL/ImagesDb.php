@@ -16,51 +16,6 @@ class DAL_ImagesDb extends DAL_BaseDb
 	*/
 	protected $TableName = "images";
 
-	/**
-		Возвращает данные о структуре таблицы в виде название колонки -> тип колонки
-
-		@return array структура таблицы
-	*/
-	protected function getStructure()
-	{
-		return array(
-				"ImageId" => "int",
-				"Folder" => "string",
-				"FileName" => "string",
-				"Title" => "string",
-				"Order" => "int",
-				"Width" => "int",
-				"Height" => "int",
-				"FileSize" => "int"
-				);
-	}
-
-	/**
-		Возвращает первичные ключи таблицы
-
-		@return array ключи таблицы
-	*/
-	protected function getKeys()
-	{
-		return array("ImageId");
-	}
-
-	/**
-		@return array автоинкрементные индексы таблицы
-	*/
-	protected function getIndexes()
-	{
-		return array("ImageId");
-	}
-
-	/**
-	 * Констуктор, инициализирует соединение
-	 *
-	 */
-	function __construct()
-	{
-		parent::__construct();
-	}
 
 	/**
 	 * Возвращает данные одного изображения
@@ -174,7 +129,7 @@ class DAL_ImagesDb extends DAL_BaseDb
 			@unlink($img_file);
 
 		// удаляем запись из таблицы
-		$this->Order()->DeleteRecord($id);
+		$this->Order($this->TableName, 'ImageId', 'Folder')->DeleteRecord($id);
 		$this->delete(array("ImageId" => $id));
 	}
 
@@ -198,10 +153,11 @@ class DAL_ImagesDb extends DAL_BaseDb
 	 * Добавляет изображение
 	 *
 	 * @param array $imageRow данные об изображении
+	 * @return #M#P#C\DAL_ImagesDb.db.GetLastId|?
 	 */
 	public function AddImage($imageRow)
 	{
-		$imageRow['Order'] = $this->Order()->InsertRecord($imageRow['Folder']);
+		$imageRow['Order'] = $this->Order($this->TableName, 'ImageId', 'Folder')->InsertRecord($imageRow['Folder']);
 		$this->insert($imageRow);
 
 		return $this->db->GetLastId();
@@ -226,19 +182,6 @@ class DAL_ImagesDb extends DAL_BaseDb
 		return "/upload/".$imageRow['Folder'].$imageRow['FileName'];
 	}
 
-        /**
-	 * Возвращает экземпляр класса OrderHelper
-	 *
-	 * @return Helpers_OrderHelper
-	 */
-	private function Order()
-	{
-		$orderHelper = new Helpers_OrderHelper();
-		$orderHelper->SetInfo('images', 'ImageId', 'Folder');
-
-		return $orderHelper;
-	}
-
 	/**
 	 * Поднимает изображение
 	 *
@@ -246,7 +189,7 @@ class DAL_ImagesDb extends DAL_BaseDb
 	 */
 	public function Up($imageId)
 	{
-		$this->Order()->UpRecord($imageId);
+		$this->Order($this->TableName, 'ImageId', 'Folder')->UpRecord($imageId);
 	}
 
 	/**
@@ -256,6 +199,6 @@ class DAL_ImagesDb extends DAL_BaseDb
 	 */
 	public function Down($imageId)
 	{
-		$this->Order()->DownRecord($imageId);
+		$this->Order($this->TableName, 'ImageId', 'Folder')->DownRecord($imageId);
 	}
 }

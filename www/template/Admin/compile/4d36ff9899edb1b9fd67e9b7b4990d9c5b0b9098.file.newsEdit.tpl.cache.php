@@ -1,18 +1,18 @@
 <?php /* Smarty version Smarty-3.0.8, created on 2011-07-12 17:52:10
-         compiled from "V:/home/buket_debug/www/module/News/newsEdit.tpl" */ ?>
+         compiled from "V:/home/buket_debug/www/module/News/Edit.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:58344e1c356ac699d9-89483858%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
-  'file_dependency' => 
+  'file_dependency' =>
   array (
-    '4d36ff9899edb1b9fd67e9b7b4990d9c5b0b9098' => 
+    '4d36ff9899edb1b9fd67e9b7b4990d9c5b0b9098' =>
     array (
-      0 => 'V:/home/buket_debug/www/module/News/newsEdit.tpl',
+      0 => 'V:/home/buket_debug/www/module/News/Edit.tpl',
       1 => 1310467796,
       2 => 'file',
     ),
   ),
   'nocache_hash' => '58344e1c356ac699d9-89483858',
-  'function' => 
+  'function' =>
   array (
   ),
   'has_nocache_code' => false,

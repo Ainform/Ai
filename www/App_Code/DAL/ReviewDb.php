@@ -15,7 +15,7 @@ class DAL_ReviewDb extends DAL_BaseDb {
 
   /**
    Возвращает данные о структуре таблицы в виде название колонки -> тип колонки
-		
+
    @return array структура таблицы
    */
   protected function getStructure() {
@@ -34,7 +34,7 @@ class DAL_ReviewDb extends DAL_BaseDb {
 
   /**
    Возвращает первичные ключи таблицы
-		
+
    @return array ключи таблицы
    */
   protected function getKeys() {
@@ -80,7 +80,7 @@ class DAL_ReviewDb extends DAL_BaseDb {
   public function GetReviewPage($moduleId, $page, $recordsOnPage) {
     return $this->selectPage(array("ModuleId" => $moduleId),
             "Order",
-            true,
+            null,
             $page,
             $recordsOnPage);
   }
@@ -130,7 +130,7 @@ class DAL_ReviewDb extends DAL_BaseDb {
     $this->insert($ReviewRow);
     return $this->db->GetLastId();
   }
-  
+
     public function UpdateReview($ReviewRow) {
     $this->update($ReviewRow);
     return $this->db->GetLastId();
