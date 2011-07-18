@@ -1,9 +1,0 @@
-
-<table class="admin_table">
-<tr>
-<th width="200px">ФИО</th><td>{{$Data.Review.FIO}}</td></tr>
-<tr><th>Заголовок</th><td>{{$Data.Review.Fone}}</td></tr>
-<tr><th>Сообщение</th><td>{{$Data.Review.Text}}</td>
-</tr>
-</table>
-<div style="text-align:center;margin:5px;"><INPUT type="button" onclick="history.go(-1)" class="button" name="" value="Назад" title="Вернуться к просмотру" /></div>
